@@ -65,7 +65,7 @@ span {
 /* PAGE TAGS */
 table {
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 100px auto;
     height: fit-content;
     width: fit-content;
 }
@@ -82,4 +82,8 @@ td {
 }
 .green {
     background-color: #779556;
+}
+button {
+    width: fit-content;
+    margin: 0 auto;
 }

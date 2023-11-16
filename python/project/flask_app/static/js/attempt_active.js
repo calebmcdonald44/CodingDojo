@@ -203,6 +203,7 @@ var b_castle = null
 var en_passant = null
 var en_passant_count = 0
 
+
 // ---------------------------------------------------------------------------------------
 // MOVES PIECES
 
@@ -212,18 +213,26 @@ function movePiece(element) {
 	w_castle = puzzle_info["w_castle"]
 	b_castle = puzzle_info["b_castle"]
 	en_passant = puzzle_info["en_passant"]
+	// let reset_puzzle = puzzle_info
+	let test_puzzle = JSON.parse(JSON.stringify(puzzle_info))
+	let cool_puzzle = {...puzzle_info}
+	let king_check = true
 
 	// logging first square and piece
 	if(click_count === 1) {
 		start_sq = element.id
 		start_r = Number(start_sq[0])
 		start_c = Number(start_sq[1])
-		start_piece = puzzle_info["chess_board"][start_r][start_c]
+		start_piece = test_puzzle["chess_board"][start_r][start_c]
 		console.log("START SQUARE, START PIECE: ", start_sq, start_piece)
+		console.log("START PIECE COLOR: ", start_piece[0])
+		king_check=false
+
 
 		// checking what moves are possible
-		if(possibleMoves(start_sq, start_piece) !== false) {
-			possible_moves = possibleMoves(start_sq, start_piece)
+		if(possibleMoves(start_sq, start_piece, test_puzzle)) {
+			possible_moves = possibleMoves(start_sq, start_piece, test_puzzle)
+
 			// changing color of possible move squares
 			for(let i = 0; i < possible_moves.length; i++) {
 				let temp = document.getElementById(possible_moves[i])
@@ -243,7 +252,7 @@ function movePiece(element) {
 		end_sq = element.id
 		end_r = Number(end_sq[0])
 		end_c = Number(end_sq[1])
-		end_piece = puzzle_info["chess_board"][end_r][end_c]
+		end_piece = test_puzzle["chess_board"][end_r][end_c]
 	}
 	
 	// making move if there have been end square is in possible moves list
@@ -251,66 +260,80 @@ function movePiece(element) {
 		// checking for castling (w)
 		if (start_piece === 'wK' && (end_sq === '76' || end_sq === '72')) {
 			if(end_sq === '76') {
-				puzzle_info["chess_board"][7][7] = '--'
-				puzzle_info["chess_board"][7][5] = 'wR'
-				puzzle_info["w_castle"]["q_side"] = false
-				puzzle_info["w_castle"]["k_side"] = false
+				test_puzzle["chess_board"][7][7] = '--'
+				test_puzzle["chess_board"][7][5] = 'wR'
+				test_puzzle["w_castle"]["q_side"] = false
+				test_puzzle["w_castle"]["k_side"] = false
 			}
 			else {
-				puzzle_info["chess_board"][7][0] = '--'
-				puzzle_info["chess_board"][7][3] = 'wR'
-				puzzle_info["w_castle"]["q_side"] = false
-				puzzle_info["w_castle"]["k_side"] = false
+				test_puzzle["chess_board"][7][0] = '--'
+				test_puzzle["chess_board"][7][3] = 'wR'
+				test_puzzle["w_castle"]["q_side"] = false
+				test_puzzle["w_castle"]["k_side"] = false
 			}
 		}
 		// checking for castling (b)
 		else if (start_piece === 'bK' && (end_sq === '06' || end_sq === '02')) {
 			if(end_sq === '06') {
-				puzzle_info["chess_board"][0][7] = '--'
-				puzzle_info["chess_board"][0][5] = 'bR'
-				puzzle_info["b_castle"]["q_side"] = false
-				puzzle_info["b_castle"]["k_side"] = false
+				test_puzzle["chess_board"][0][7] = '--'
+				test_puzzle["chess_board"][0][5] = 'bR'
+				test_puzzle["b_castle"]["q_side"] = false
+				test_puzzle["b_castle"]["k_side"] = false
 			}
 			else {
-				puzzle_info["chess_board"][0][0] = '--'
-				puzzle_info["chess_board"][0][3] = 'bR'
-				puzzle_info["b_castle"]["q_side"] = false
-				puzzle_info["b_castle"]["k_side"] = false
+				test_puzzle["chess_board"][0][0] = '--'
+				test_puzzle["chess_board"][0][3] = 'bR'
+				test_puzzle["b_castle"]["q_side"] = false
+				test_puzzle["b_castle"]["k_side"] = false
 			}
 		}
 		// setting en passant if necessary
 		else if (start_piece[1] === 'P' && (start_r - end_r === 2 || start_r - end_r === -2)) {
 			if (start_piece[0] === 'w') {
-				puzzle_info["en_passant"] = `${end_r+1}${end_c}`
-				console.log("EN PASSANT SET TO: ", puzzle_info["en_passant"])
+				test_puzzle["en_passant"] = `${end_r+1}${end_c}`
+				console.log("EN PASSANT SET TO: ", test_puzzle["en_passant"])
 			}
 			else {
-				puzzle_info["en_passant"] = `${end_r-1}${end_c}`
-				console.log("EN PASSANT SET TO: ", puzzle_info["en_passant"])
+				test_puzzle["en_passant"] = `${end_r-1}${end_c}`
+				console.log("EN PASSANT SET TO: ", test_puzzle["en_passant"])
 			}
 		}
 		// checking for en passant (w and b)
 		else if (start_piece[1] === 'P' && end_sq === en_passant) {
 			if(start_piece[0] === 'w') {
-				puzzle_info["chess_board"][end_r + 1][end_c] = '--'
+				test_puzzle["chess_board"][end_r + 1][end_c] = '--'
 			}
 			else {
-				puzzle_info["chess_board"][end_r - 1][end_c] = '--'
+				test_puzzle["chess_board"][end_r - 1][end_c] = '--'
 			}
 		}
-		puzzle_info["chess_board"][start_r][start_c] = '--'
-		puzzle_info["chess_board"][end_r][end_c] = start_piece
-		currentBoard(puzzle_info)
-		console.log('UPDATED BOARD: ', puzzle_info["chess_board"])
+		test_puzzle["chess_board"][start_r][start_c] = '--'
+		test_puzzle["chess_board"][end_r][end_c] = start_piece
+
+		// checking if king is in check before setting puzzle_info equal to test_puzzle 
+		if(!kingCheck(start_piece[0], test_puzzle)) {
+
+			puzzle_info = JSON.parse(JSON.stringify(test_puzzle))
+			console.log("PUZZLE INFO HAS BEEN SET EQUAL TO TEST PUZZLE")
+			currentBoard(puzzle_info)
+			console.log('UPDATED BOARD: ', puzzle_info["chess_board"])
+			king_check=false
+		}
 	}
 
+	console.log('is king in check?', king_check)
 	// resetting color of squares if second click is not in possible moves list
-	else if (click_count === 2) {
+	if ((click_count === 2 && !possible_moves.includes(end_sq)) || king_check === true) {
+		console.log('reset square color actived')
+		console.log(puzzle_info)
+		console.log(`Are they the same?? ${puzzle_info==test_puzzle}`)
+		console.log("puzzle info :", puzzle_info["chess_board"], "test puzzle:", test_puzzle["chess_board"], cool_puzzle["chess_board"])
 		currentBoard(puzzle_info)
 	}
 
 	// resetting info once there has been 2 clicks
-	if(click_count > 1) {
+	if(click_count > 1 || king_check === true) {
+		console.log('reset info activated')
 		click_count = 0
 		start_sq = ""
 		start_piece = ""
@@ -320,17 +343,48 @@ function movePiece(element) {
 		if(en_passant !== '-') {
 			en_passant_count += 1
 		}
-		if(en_passant_count > 1) {
+		if(en_passant_count > 0) {
 			puzzle_info["en_passant"] = '-'
 			en_passant_count = 0
 		}
 	}
 }
+// ---------------------------------------------------------------------------------------
+// CHECKS WHETHER OR NOT PLAYER'S KING IS IN CHECK BEFORE MAKING MOVE
+function kingCheck(color, test_puzzle) {
+	let king_square = []
+	let in_check = false
+
+	// finding king square
+	for(i=0; i < 8; i++) {
+		for(j=0; j < 8; j++) {
+			if (test_puzzle["chess_board"][i][j] === `${color}K`) {
+				king_square = [i, j]
+			}
+		}
+	}
+	// checking if any opposing piece is attacking king square
+	for(i=0; i<8; i++) {
+		for(j=0; j<8; j++) {
+			if (test_puzzle["chess_board"][i][j][0] !== color) {
+				let attack_squares = possibleMoves(`${i}${j}`, test_puzzle["chess_board"][i][j], test_puzzle)
+				if(attack_squares) {
+					if(attack_squares.includes(`${king_square[0]}${king_square[1]}`)) {
+						in_check = true
+					}
+				}
+			}
+		}
+	}
+	console.log("KING CHECK RAN")
+	return in_check
+}
+
 
 // ---------------------------------------------------------------------------------------
 // CHECKS WHAT end_sq's ARE LEGAL MOVES BASED ON start_sq
 
-function possibleMoves(square, piece) {
+function possibleMoves(square, piece, test_puzzle) {
 	let possible_moves = []
 	let r = Number(square[0])
 	let c = Number(square[1])
@@ -343,19 +397,19 @@ function possibleMoves(square, piece) {
 	// white pawn
 	else if(piece === 'wP') {
 		// one foward
-		if(puzzle_info["chess_board"][r-1][c] === '--') {
+		if(test_puzzle["chess_board"][r-1][c] === '--') {
 			possible_moves.push(`${r-1}${c}`)
 		}
 		// two forward
-		if(r === 6 && puzzle_info["chess_board"][r-2][c] === '--') {
+		if(r === 6 && test_puzzle["chess_board"][r-2][c] === '--') {
 			possible_moves.push(`${r-2}${c}`)
 		}
 		// left and right captures (including en passant)
-		if(c !== 7 && (puzzle_info["chess_board"][r-1][c+1][0] === 'b' || en_passant === `${r-1}${c+1}`)) {
+		if(c !== 7 && (test_puzzle["chess_board"][r-1][c+1][0] === 'b' || en_passant === `${r-1}${c+1}`)) {
 			console.log("SEEING IF EN PASSANT AND SQUARE MATCH", en_passant, `${r-1}${c+1}`)
 			possible_moves.push(`${r-1}${c+1}`)
 		}
-		if(c !== 0 && (puzzle_info["chess_board"][r-1][c-1][0] === 'b' || en_passant === `${r-1}${c-1}`)) {
+		if(c !== 0 && (test_puzzle["chess_board"][r-1][c-1][0] === 'b' || en_passant === `${r-1}${c-1}`)) {
 			console.log("SEEING IF EN PASSANT AND SQUARE MATCH", en_passant, `${r-1}${c-1}`)
 			possible_moves.push(`${r-1}${c-1}`)
 		}
@@ -368,19 +422,19 @@ function possibleMoves(square, piece) {
 	// black pawn
 	else if (piece === 'bP') {
 		// one foward
-		if(puzzle_info["chess_board"][r+1][c] === '--') {
+		if(test_puzzle["chess_board"][r+1][c] === '--') {
 			possible_moves.push(`${r+1}${c}`)
 		}
 		// two forward
-		if(r === 1 && puzzle_info["chess_board"][r+2][c] === '--') {
+		if(r === 1 && test_puzzle["chess_board"][r+2][c] === '--') {
 			possible_moves.push(`${r+2}${c}`)
 		}
 		// left and right captures (including en passant)
-		if(c !== 7 && (puzzle_info["chess_board"][r+1][c+1][0] === 'w' || en_passant === `${r+1}${c+1}`)) {
+		if(c !== 7 && (test_puzzle["chess_board"][r+1][c+1][0] === 'w' || en_passant === `${r+1}${c+1}`)) {
 			console.log("SEEING IF EN PASSANT AND SQUARE MATCH", en_passant, `${r+1}${c+1}`)
 			possible_moves.push(`${r+1}${c+1}`)
 		}
-		if(c !== 0 && (puzzle_info["chess_board"][r+1][c-1][0] === 'w' || en_passant === `${r+1}${c-1}`)) {
+		if(c !== 0 && (test_puzzle["chess_board"][r+1][c-1][0] === 'w' || en_passant === `${r+1}${c-1}`)) {
 			console.log("SEEING IF EN PASSANT AND SQUARE MATCH", en_passant, `${r+1}${c-1}`)
 			possible_moves.push(`${r+1}${c-1}`)
 		}
@@ -394,42 +448,42 @@ function possibleMoves(square, piece) {
 	else if (piece === 'wN') {
 		// all checks making sure end square is on board, and either contains black piece or is vacant
 		if (r + 1 < 8 && c - 2 >= 0) {
-			if (puzzle_info["chess_board"][r+1][c-2] === '--' || puzzle_info["chess_board"][r+1][c-2][0] === 'b') {
+			if (test_puzzle["chess_board"][r+1][c-2] === '--' || test_puzzle["chess_board"][r+1][c-2][0] === 'b') {
 				possible_moves.push(`${r+1}${c-2}`)
 			}
 		}
 		if (r + 2 < 8 && c - 1 >= 0) {
-			if (puzzle_info["chess_board"][r+2][c-1] === '--' || puzzle_info["chess_board"][r+2][c-1][0] === 'b') {
+			if (test_puzzle["chess_board"][r+2][c-1] === '--' || test_puzzle["chess_board"][r+2][c-1][0] === 'b') {
 				possible_moves.push(`${r+2}${c-1}`)
 			}
 		}
 		if (r + 1 < 8 && c + 2 < 8) {
-			if (puzzle_info["chess_board"][r+1][c+2] === '--' || puzzle_info["chess_board"][r+1][c+2][0] === 'b') {
+			if (test_puzzle["chess_board"][r+1][c+2] === '--' || test_puzzle["chess_board"][r+1][c+2][0] === 'b') {
 				possible_moves.push(`${r+1}${c+2}`)
 			}
 		}
 		if (r + 2 < 8 && c + 1 < 8) {
-			if (puzzle_info["chess_board"][r+2][c+1] === '--' || puzzle_info["chess_board"][r+2][c+1][0] === 'b') {
+			if (test_puzzle["chess_board"][r+2][c+1] === '--' || test_puzzle["chess_board"][r+2][c+1][0] === 'b') {
 				possible_moves.push(`${r+2}${c+1}`)
 			}
 		}
 		if (r - 1 >= 0 && c - 2 >= 0) {
-			if (puzzle_info["chess_board"][r-1][c-2] === '--' || puzzle_info["chess_board"][r-1][c-2][0] === 'b') {
+			if (test_puzzle["chess_board"][r-1][c-2] === '--' || test_puzzle["chess_board"][r-1][c-2][0] === 'b') {
 				possible_moves.push(`${r-1}${c-2}`)
 			}
 		}
 		if (r - 2 >= 0 && c - 1 >= 0) {
-			if (puzzle_info["chess_board"][r-2][c-1] === '--' || puzzle_info["chess_board"][r-2][c-1][0] === 'b') {
+			if (test_puzzle["chess_board"][r-2][c-1] === '--' || test_puzzle["chess_board"][r-2][c-1][0] === 'b') {
 				possible_moves.push(`${r-2}${c-1}`)
 			}
 		}
 		if (r - 2 >= 0 && c + 1 < 8) {
-			if (puzzle_info["chess_board"][r-2][c+1] === '--' || puzzle_info["chess_board"][r-2][c+1][0] === 'b') {
+			if (test_puzzle["chess_board"][r-2][c+1] === '--' || test_puzzle["chess_board"][r-2][c+1][0] === 'b') {
 				possible_moves.push(`${r-2}${c+1}`)
 			}
 		}
 		if (r - 1 >= 0 && c + 2 < 8) {
-			if (puzzle_info["chess_board"][r-1][c+2] === '--' || puzzle_info["chess_board"][r-1][c+2][0] === 'b') {
+			if (test_puzzle["chess_board"][r-1][c+2] === '--' || test_puzzle["chess_board"][r-1][c+2][0] === 'b') {
 				possible_moves.push(`${r-1}${c+2}`)
 			}
 		}
@@ -442,42 +496,42 @@ function possibleMoves(square, piece) {
 	else if (piece === 'bN') {
 		// all checks making sure end square is on board, and either contains white piece or is vacant
 		if (r + 1 < 8 && c - 2 >= 0) {
-			if (puzzle_info["chess_board"][r+1][c-2] === '--' || puzzle_info["chess_board"][r+1][c-2][0] === 'w') {
+			if (test_puzzle["chess_board"][r+1][c-2] === '--' || test_puzzle["chess_board"][r+1][c-2][0] === 'w') {
 				possible_moves.push(`${r+1}${c-2}`)
 			}
 		}
 		if (r + 2 < 8 && c - 1 >= 0) {
-			if (puzzle_info["chess_board"][r+2][c-1] === '--' || puzzle_info["chess_board"][r+2][c-1][0] === 'w') {
+			if (test_puzzle["chess_board"][r+2][c-1] === '--' || test_puzzle["chess_board"][r+2][c-1][0] === 'w') {
 				possible_moves.push(`${r+2}${c-1}`)
 			}
 		}
 		if (r + 1 < 8 && c + 2 < 8) {
-			if (puzzle_info["chess_board"][r+1][c+2] === '--' || puzzle_info["chess_board"][r+1][c+2][0] === 'w') {
+			if (test_puzzle["chess_board"][r+1][c+2] === '--' || test_puzzle["chess_board"][r+1][c+2][0] === 'w') {
 				possible_moves.push(`${r+1}${c+2}`)
 			}
 		}
 		if (r + 2 < 8 && c + 1 < 8) {
-			if (puzzle_info["chess_board"][r+2][c+1] === '--' || puzzle_info["chess_board"][r+2][c+1][0] === 'w') {
+			if (test_puzzle["chess_board"][r+2][c+1] === '--' || test_puzzle["chess_board"][r+2][c+1][0] === 'w') {
 				possible_moves.push(`${r+2}${c+1}`)
 			}
 		}
 		if (r - 1 >= 0 && c - 2 >= 0) {
-			if (puzzle_info["chess_board"][r-1][c-2] === '--' || puzzle_info["chess_board"][r-1][c-2][0] === 'w') {
+			if (test_puzzle["chess_board"][r-1][c-2] === '--' || test_puzzle["chess_board"][r-1][c-2][0] === 'w') {
 				possible_moves.push(`${r-1}${c-2}`)
 			}
 		}
 		if (r - 2 >= 0 && c - 1 >= 0) {
-			if (puzzle_info["chess_board"][r-2][c-1] === '--' || puzzle_info["chess_board"][r-2][c-1][0] === 'w') {
+			if (test_puzzle["chess_board"][r-2][c-1] === '--' || test_puzzle["chess_board"][r-2][c-1][0] === 'w') {
 				possible_moves.push(`${r-2}${c-1}`)
 			}
 		}
 		if (r - 2 >= 0 && c + 1 < 8) {
-			if (puzzle_info["chess_board"][r-2][c+1] === '--' || puzzle_info["chess_board"][r-2][c+1][0] === 'w') {
+			if (test_puzzle["chess_board"][r-2][c+1] === '--' || test_puzzle["chess_board"][r-2][c+1][0] === 'w') {
 				possible_moves.push(`${r-2}${c+1}`)
 			}
 		}
 		if (r - 1 >= 0 && c + 2 < 8) {
-			if (puzzle_info["chess_board"][r-1][c+2] === '--' || puzzle_info["chess_board"][r-1][c+2][0] === 'w') {
+			if (test_puzzle["chess_board"][r-1][c+2] === '--' || test_puzzle["chess_board"][r-1][c+2][0] === 'w') {
 				possible_moves.push(`${r-1}${c+2}`)
 			}
 		}
@@ -497,11 +551,11 @@ function possibleMoves(square, piece) {
 			// checking that path is still clear and i isn't large enough to go outside bounds of chess board
 			if(clearPath1 && i <= r && i <= c) {
 				// checking if square is vacant
-				if(puzzle_info["chess_board"][r-i][c-i] === '--') {
+				if(test_puzzle["chess_board"][r-i][c-i] === '--') {
 					possible_moves.push(`${r-i}${c-i}`)
 				}
 				// checking if square is occupied by enemy piece, adding it as possible move and closing path
-				else if (puzzle_info["chess_board"][r-i][c-i][0] === 'b') {
+				else if (test_puzzle["chess_board"][r-i][c-i][0] === 'b') {
 					possible_moves.push(`${r-i}${c-i}`)
 					clearPath1 = false
 				}
@@ -511,10 +565,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath2 && i <= r && c+i < 8) {
-				if(puzzle_info["chess_board"][r-i][c+i] === '--') {
+				if(test_puzzle["chess_board"][r-i][c+i] === '--') {
 					possible_moves.push(`${r-i}${c+i}`)
 				}
-				else if (puzzle_info["chess_board"][r-i][c+i][0] === 'b') {
+				else if (test_puzzle["chess_board"][r-i][c+i][0] === 'b') {
 					possible_moves.push(`${r-i}${c+i}`)
 					clearPath2 = false
 				}
@@ -523,10 +577,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath3 && r+i < 8 && c+i < 8) {
-				if(puzzle_info["chess_board"][r+i][c+i] === '--') {
+				if(test_puzzle["chess_board"][r+i][c+i] === '--') {
 					possible_moves.push(`${r+i}${c+i}`)
 				}
-				else if (puzzle_info["chess_board"][r+i][c+i][0] === 'b') {
+				else if (test_puzzle["chess_board"][r+i][c+i][0] === 'b') {
 					possible_moves.push(`${r+i}${c+i}`)
 					clearPath3 = false
 				}
@@ -535,10 +589,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath4 && r+i < 8 && i <= c) {
-				if(puzzle_info["chess_board"][r+i][c-i] === '--') {
+				if(test_puzzle["chess_board"][r+i][c-i] === '--') {
 					possible_moves.push(`${r+i}${c-i}`)
 				}
-				else if (puzzle_info["chess_board"][r+i][c-i][0] === 'b') {
+				else if (test_puzzle["chess_board"][r+i][c-i][0] === 'b') {
 					possible_moves.push(`${r+i}${c-i}`)
 					clearPath4 = false
 				}
@@ -563,11 +617,11 @@ function possibleMoves(square, piece) {
 			// checking that path is still clear and i isn't large enough to go outside bounds of chess board
 			if(clearPath1 && i <= r && i <= c) {
 				// checking if square is vacant
-				if(puzzle_info["chess_board"][r-i][c-i] === '--') {
+				if(test_puzzle["chess_board"][r-i][c-i] === '--') {
 					possible_moves.push(`${r-i}${c-i}`)
 				}
 				// checking if square is occupied by enemy piece, adding it as possible move and closing path
-				else if (puzzle_info["chess_board"][r-i][c-i][0] === 'w') {
+				else if (test_puzzle["chess_board"][r-i][c-i][0] === 'w') {
 					possible_moves.push(`${r-i}${c-i}`)
 					clearPath1 = false
 				}
@@ -577,10 +631,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath2 && i <= r && c+i < 8) {
-				if(puzzle_info["chess_board"][r-i][c+i] === '--') {
+				if(test_puzzle["chess_board"][r-i][c+i] === '--') {
 					possible_moves.push(`${r-i}${c+i}`)
 				}
-				else if (puzzle_info["chess_board"][r-i][c+i][0] === 'w') {
+				else if (test_puzzle["chess_board"][r-i][c+i][0] === 'w') {
 					possible_moves.push(`${r-i}${c+i}`)
 					clearPath2 = false
 				}
@@ -589,10 +643,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath3 && r+i < 8 && c+i < 8) {
-				if(puzzle_info["chess_board"][r+i][c+i] === '--') {
+				if(test_puzzle["chess_board"][r+i][c+i] === '--') {
 					possible_moves.push(`${r+i}${c+i}`)
 				}
-				else if (puzzle_info["chess_board"][r+i][c+i][0] === 'w') {
+				else if (test_puzzle["chess_board"][r+i][c+i][0] === 'w') {
 					possible_moves.push(`${r+i}${c+i}`)
 					clearPath3 = false
 				}
@@ -601,10 +655,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath4 && r+i < 8 && i <= c) {
-				if(puzzle_info["chess_board"][r+i][c-i] === '--') {
+				if(test_puzzle["chess_board"][r+i][c-i] === '--') {
 					possible_moves.push(`${r+i}${c-i}`)
 				}
-				else if (puzzle_info["chess_board"][r+i][c-i][0] === 'w') {
+				else if (test_puzzle["chess_board"][r+i][c-i][0] === 'w') {
 					possible_moves.push(`${r+i}${c-i}`)
 					clearPath4 = false
 				}
@@ -629,11 +683,11 @@ function possibleMoves(square, piece) {
 			// checking that path is still clear and i isn't large enough to go outside bounds of chess board
 			if(clearPath1 && r+i < 8) {
 				// checking if square is vacant
-				if(puzzle_info["chess_board"][r+i][c] === '--') {
+				if(test_puzzle["chess_board"][r+i][c] === '--') {
 					possible_moves.push(`${r+i}${c}`)
 				}
 				// checking if square is occupied by enemy piece, adding it as possible move and closing path
-				else if (puzzle_info["chess_board"][r+i][c][0] === 'b') {
+				else if (test_puzzle["chess_board"][r+i][c][0] === 'b') {
 					possible_moves.push(`${r+i}${c}`)
 					clearPath1 = false
 				}
@@ -643,10 +697,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath2 && r >= i) {
-				if(puzzle_info["chess_board"][r-i][c] === '--') {
+				if(test_puzzle["chess_board"][r-i][c] === '--') {
 					possible_moves.push(`${r-i}${c}`)
 				}
-				else if (puzzle_info["chess_board"][r-i][c][0] === 'b') {
+				else if (test_puzzle["chess_board"][r-i][c][0] === 'b') {
 					possible_moves.push(`${r-i}${c}`)
 					clearPath2 = false
 				}
@@ -655,10 +709,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath3 && c+i < 8) {
-				if(puzzle_info["chess_board"][r][c+i] === '--') {
+				if(test_puzzle["chess_board"][r][c+i] === '--') {
 					possible_moves.push(`${r}${c+i}`)
 				}
-				else if (puzzle_info["chess_board"][r][c+i][0] === 'b') {
+				else if (test_puzzle["chess_board"][r][c+i][0] === 'b') {
 					possible_moves.push(`${r}${c+i}`)
 					clearPath3 = false
 				}
@@ -667,10 +721,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath4 && c >= i) {
-				if(puzzle_info["chess_board"][r][c-i] === '--') {
+				if(test_puzzle["chess_board"][r][c-i] === '--') {
 					possible_moves.push(`${r}${c-i}`)
 				}
-				else if (puzzle_info["chess_board"][r][c-i][0] === 'b') {
+				else if (test_puzzle["chess_board"][r][c-i][0] === 'b') {
 					possible_moves.push(`${r}${c-i}`)
 					clearPath4 = false
 				}
@@ -695,11 +749,11 @@ function possibleMoves(square, piece) {
 			// checking that path is still clear and i isn't large enough to go outside bounds of chess board
 			if(clearPath1 && r+i < 8) {
 				// checking if square is vacant
-				if(puzzle_info["chess_board"][r+i][c] === '--') {
+				if(test_puzzle["chess_board"][r+i][c] === '--') {
 					possible_moves.push(`${r+i}${c}`)
 				}
 				// checking if square is occupied by enemy piece, adding it as possible move and closing path
-				else if (puzzle_info["chess_board"][r+i][c][0] === 'w') {
+				else if (test_puzzle["chess_board"][r+i][c][0] === 'w') {
 					possible_moves.push(`${r+i}${c}`)
 					clearPath1 = false
 				}
@@ -709,10 +763,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath2 && r >= i) {
-				if(puzzle_info["chess_board"][r-i][c] === '--') {
+				if(test_puzzle["chess_board"][r-i][c] === '--') {
 					possible_moves.push(`${r-i}${c}`)
 				}
-				else if (puzzle_info["chess_board"][r-i][c][0] === 'w') {
+				else if (test_puzzle["chess_board"][r-i][c][0] === 'w') {
 					possible_moves.push(`${r-i}${c}`)
 					clearPath2 = false
 				}
@@ -721,10 +775,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath3 && c+i < 8) {
-				if(puzzle_info["chess_board"][r][c+i] === '--') {
+				if(test_puzzle["chess_board"][r][c+i] === '--') {
 					possible_moves.push(`${r}${c+i}`)
 				}
-				else if (puzzle_info["chess_board"][r][c+i][0] === 'w') {
+				else if (test_puzzle["chess_board"][r][c+i][0] === 'w') {
 					possible_moves.push(`${r}${c+i}`)
 					clearPath3 = false
 				}
@@ -733,10 +787,10 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath4 && c >= i) {
-				if(puzzle_info["chess_board"][r][c-i] === '--') {
+				if(test_puzzle["chess_board"][r][c-i] === '--') {
 					possible_moves.push(`${r}${c-i}`)
 				}
-				else if (puzzle_info["chess_board"][r][c-i][0] === 'w') {
+				else if (test_puzzle["chess_board"][r][c-i][0] === 'w') {
 					possible_moves.push(`${r}${c-i}`)
 					clearPath4 = false
 				}
@@ -765,15 +819,15 @@ function possibleMoves(square, piece) {
 			// checking that path is still clear and i isn't large enough to go outside bounds of chess board
 			if(clearPath1 && r+i < 8) {
 				// checking if square is vacant
-				if(puzzle_info["chess_board"][r+i][c] === '--') {
+				if(test_puzzle["chess_board"][r+i][c] === '--') {
 					possible_moves.push(`${r+i}${c}`)
 				}
 				// checking if square is occupied by enemy piece, adding it as possible move and closing path
-				else if (puzzle_info["chess_board"][r+i][c][0] === 'w' && piece[0] === 'b') {
+				else if (test_puzzle["chess_board"][r+i][c][0] === 'w' && piece[0] === 'b') {
 					possible_moves.push(`${r+i}${c}`)
 					clearPath1 = false
 				}
-				else if (puzzle_info["chess_board"][r+i][c][0] === 'b' && piece[0] === 'w') {
+				else if (test_puzzle["chess_board"][r+i][c][0] === 'b' && piece[0] === 'w') {
 					possible_moves.push(`${r+i}${c}`)
 					clearPath1 = false
 				}
@@ -783,14 +837,14 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath2 && r >= i) {
-				if(puzzle_info["chess_board"][r-i][c] === '--') {
+				if(test_puzzle["chess_board"][r-i][c] === '--') {
 					possible_moves.push(`${r-i}${c}`)
 				}
-				else if (puzzle_info["chess_board"][r-i][c][0] === 'w' && piece[0] === 'b') {
+				else if (test_puzzle["chess_board"][r-i][c][0] === 'w' && piece[0] === 'b') {
 					possible_moves.push(`${r-i}${c}`)
 					clearPath2 = false
 				}
-				else if (puzzle_info["chess_board"][r-i][c][0] === 'b' && piece[0] === 'w') {
+				else if (test_puzzle["chess_board"][r-i][c][0] === 'b' && piece[0] === 'w') {
 					possible_moves.push(`${r-i}${c}`)
 					clearPath2 = false
 				}
@@ -799,14 +853,14 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath3 && c >= i) {
-				if(puzzle_info["chess_board"][r][c-i] === '--') {
+				if(test_puzzle["chess_board"][r][c-i] === '--') {
 					possible_moves.push(`${r}${c-i}`)
 				}
-				else if (puzzle_info["chess_board"][r][c-i][0] === 'w' && piece[0] === 'b') {
+				else if (test_puzzle["chess_board"][r][c-i][0] === 'w' && piece[0] === 'b') {
 					possible_moves.push(`${r}${c-i}`)
 					clearPath3 = false
 				}
-				else if (puzzle_info["chess_board"][r][c-i][0] === 'b' && piece[0] === 'w') {
+				else if (test_puzzle["chess_board"][r][c-i][0] === 'b' && piece[0] === 'w') {
 					possible_moves.push(`${r}${c-i}`)
 					clearPath3 = false
 				}
@@ -815,14 +869,14 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath4 && c+i < 8) {
-				if(puzzle_info["chess_board"][r][c+i] === '--') {
+				if(test_puzzle["chess_board"][r][c+i] === '--') {
 					possible_moves.push(`${r}${c+i}`)
 				}
-				else if (puzzle_info["chess_board"][r][c+i][0] === 'w' && piece[0] === 'b') {
+				else if (test_puzzle["chess_board"][r][c+i][0] === 'w' && piece[0] === 'b') {
 					possible_moves.push(`${r}${c+i}`)
 					clearPath4 = false
 				}
-				else if (puzzle_info["chess_board"][r][c+i][0] === 'b' && piece[0] === 'w') {
+				else if (test_puzzle["chess_board"][r][c+i][0] === 'b' && piece[0] === 'w') {
 					possible_moves.push(`${r}${c+i}`)
 					clearPath3 = false
 				}
@@ -832,14 +886,14 @@ function possibleMoves(square, piece) {
 			}
 			// mapping every square horizontally and vertically from start square
 			if(clearPath5 && i <= r && c+i < 8) {
-				if(puzzle_info["chess_board"][r-i][c+i] === '--') {
+				if(test_puzzle["chess_board"][r-i][c+i] === '--') {
 					possible_moves.push(`${r-i}${c+i}`)
 				}
-				else if (puzzle_info["chess_board"][r-i][c+i][0] === 'w' && piece[0] === 'b') {
+				else if (test_puzzle["chess_board"][r-i][c+i][0] === 'w' && piece[0] === 'b') {
 					possible_moves.push(`${r-i}${c+i}`)
 					clearPath5 = false
 				}
-				else if (puzzle_info["chess_board"][r-i][c+i][0] === 'b' && piece[0] === 'w') {
+				else if (test_puzzle["chess_board"][r-i][c+i][0] === 'b' && piece[0] === 'w') {
 					possible_moves.push(`${r-i}${c+i}`)
 					clearPath5 = false
 				}
@@ -848,14 +902,14 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath6 && i <= r && i <= c) {
-				if(puzzle_info["chess_board"][r-i][c-i] === '--') {
+				if(test_puzzle["chess_board"][r-i][c-i] === '--') {
 					possible_moves.push(`${r-i}${c-i}`)
 				}
-				else if (puzzle_info["chess_board"][r-i][c-i][0] === 'w' && piece[0] === 'b') {
+				else if (test_puzzle["chess_board"][r-i][c-i][0] === 'w' && piece[0] === 'b') {
 					possible_moves.push(`${r-i}${c-i}`)
 					clearPath6 = false
 				}
-				else if (puzzle_info["chess_board"][r-i][c-i][0] === 'b' && piece[0] === 'w') {
+				else if (test_puzzle["chess_board"][r-i][c-i][0] === 'b' && piece[0] === 'w') {
 					possible_moves.push(`${r-i}${c-i}`)
 					clearPath6 = false
 				}
@@ -864,14 +918,14 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath7 && r+i < 8 && i <= c) {
-				if(puzzle_info["chess_board"][r+i][c-i] === '--') {
+				if(test_puzzle["chess_board"][r+i][c-i] === '--') {
 					possible_moves.push(`${r+i}${c-i}`)
 				}
-				else if (puzzle_info["chess_board"][r+i][c-i][0] === 'w' && piece[0] === 'b') {
+				else if (test_puzzle["chess_board"][r+i][c-i][0] === 'w' && piece[0] === 'b') {
 					possible_moves.push(`${r+i}${c-i}`)
 					clearPath7 = false
 				}
-				else if (puzzle_info["chess_board"][r+i][c-i][0] === 'b' && piece[0] === 'w') {
+				else if (test_puzzle["chess_board"][r+i][c-i][0] === 'b' && piece[0] === 'w') {
 					possible_moves.push(`${r+i}${c-i}`)
 					clearPath7 = false
 				}
@@ -880,14 +934,14 @@ function possibleMoves(square, piece) {
 				}
 			}
 			if(clearPath8 && r+i < 8 && c+i < 8) {
-				if(puzzle_info["chess_board"][r+i][c+i] === '--') {
+				if(test_puzzle["chess_board"][r+i][c+i] === '--') {
 					possible_moves.push(`${r+i}${c+i}`)
 				}
-				else if (puzzle_info["chess_board"][r+i][c+i][0] === 'w' && piece[0] === 'b') {
+				else if (test_puzzle["chess_board"][r+i][c+i][0] === 'w' && piece[0] === 'b') {
 					possible_moves.push(`${r+i}${c+i}`)
 					clearPath8 = false
 				}
-				else if (puzzle_info["chess_board"][r+i][c+i][0] === 'b' && piece[0] === 'w') {
+				else if (test_puzzle["chess_board"][r+i][c+i][0] === 'b' && piece[0] === 'w') {
 					possible_moves.push(`${r+i}${c+i}`)
 					clearPath8 = false
 				}
@@ -906,114 +960,114 @@ function possibleMoves(square, piece) {
 		// mapping every clear square adjacent to king
 		// above (white's perspective)
 		if (r >= 1) {
-			if(puzzle_info["chess_board"][r-1][c] === '--') {
+			if(test_puzzle["chess_board"][r-1][c] === '--') {
 				possible_moves.push(`${r-1}${c}`)
 			}
-			else if(puzzle_info["chess_board"][r-1][c][0] === 'w' && piece[0] === 'b') {
+			else if(test_puzzle["chess_board"][r-1][c][0] === 'w' && piece[0] === 'b') {
 				possible_moves.push(`${r-1}${c}`)
 			}
-			else if(puzzle_info["chess_board"][r-1][c][0] === 'b' && piece[0] === 'w') {
+			else if(test_puzzle["chess_board"][r-1][c][0] === 'b' && piece[0] === 'w') {
 				possible_moves.push(`${r-1}${c}`)
 			}
 		}
 		// below
 		if (r <= 6) {
-			if(puzzle_info["chess_board"][r+1][c] === '--') {
+			if(test_puzzle["chess_board"][r+1][c] === '--') {
 				possible_moves.push(`${r+1}${c}`)
 			}
-			else if(puzzle_info["chess_board"][r+1][c][0] === 'w' && piece[0] === 'b') {
+			else if(test_puzzle["chess_board"][r+1][c][0] === 'w' && piece[0] === 'b') {
 				possible_moves.push(`${r+1}${c}`)
 			}
-			else if(puzzle_info["chess_board"][r+1][c][0] === 'b' && piece[0] === 'w') {
+			else if(test_puzzle["chess_board"][r+1][c][0] === 'b' && piece[0] === 'w') {
 				possible_moves.push(`${r+1}${c}`)
 			}
 		}
 		// below right
 		if (r <= 6 && c <= 6) {
-			if(puzzle_info["chess_board"][r+1][c+1] === '--') {
+			if(test_puzzle["chess_board"][r+1][c+1] === '--') {
 				possible_moves.push(`${r+1}${c+1}`)
 			}
-			else if(puzzle_info["chess_board"][r+1][c+1][0] === 'w' && piece[0] === 'b') {
+			else if(test_puzzle["chess_board"][r+1][c+1][0] === 'w' && piece[0] === 'b') {
 				possible_moves.push(`${r+1}${c+1}`)
 			}
-			else if(puzzle_info["chess_board"][r+1][c+1][0] === 'b' && piece[0] === 'w') {
+			else if(test_puzzle["chess_board"][r+1][c+1][0] === 'b' && piece[0] === 'w') {
 				possible_moves.push(`${r+1}${c+1}`)
 			}
 		}
 		// above right
 		if (r >= 1 && c <= 6) {
-			if(puzzle_info["chess_board"][r-1][c+1] === '--') {
+			if(test_puzzle["chess_board"][r-1][c+1] === '--') {
 				possible_moves.push(`${r-1}${c+1}`)
 			}
-			else if(puzzle_info["chess_board"][r-1][c+1][0] === 'w' && piece[0] === 'b') {
+			else if(test_puzzle["chess_board"][r-1][c+1][0] === 'w' && piece[0] === 'b') {
 				possible_moves.push(`${r-1}${c+1}`)
 			}
-			else if(puzzle_info["chess_board"][r-1][c+1][0] === 'b' && piece[0] === 'w') {
+			else if(test_puzzle["chess_board"][r-1][c+1][0] === 'b' && piece[0] === 'w') {
 				possible_moves.push(`${r-1}${c+1}`)
 			}
 		}
 		// above left
 		if (r >= 1 && c >= 1) {
-			if(puzzle_info["chess_board"][r-1][c-1] === '--') {
+			if(test_puzzle["chess_board"][r-1][c-1] === '--') {
 				possible_moves.push(`${r-1}${c-1}`)
 			}
-			else if(puzzle_info["chess_board"][r-1][c-1][0] === 'w' && piece[0] === 'b') {
+			else if(test_puzzle["chess_board"][r-1][c-1][0] === 'w' && piece[0] === 'b') {
 				possible_moves.push(`${r-1}${c-1}`)
 			}
-			else if(puzzle_info["chess_board"][r-1][c-1][0] === 'b' && piece[0] === 'w') {
+			else if(test_puzzle["chess_board"][r-1][c-1][0] === 'b' && piece[0] === 'w') {
 				possible_moves.push(`${r-1}${c-1}`)
 			}
 		}
 		// below left
 		if (r <= 6 && c >= 1) {
-			if(puzzle_info["chess_board"][r+1][c-1] === '--') {
+			if(test_puzzle["chess_board"][r+1][c-1] === '--') {
 				possible_moves.push(`${r+1}${c-1}`)
 			}
-			else if(puzzle_info["chess_board"][r+1][c-1][0] === 'w' && piece[0] === 'b') {
+			else if(test_puzzle["chess_board"][r+1][c-1][0] === 'w' && piece[0] === 'b') {
 				possible_moves.push(`${r+1}${c-1}`)
 			}
-			else if(puzzle_info["chess_board"][r+1][c-1][0] === 'b' && piece[0] === 'w') {
+			else if(test_puzzle["chess_board"][r+1][c-1][0] === 'b' && piece[0] === 'w') {
 				possible_moves.push(`${r+1}${c-1}`)
 			}
 		}
 		// left
 		if (c >= 1) {
-			if(puzzle_info["chess_board"][r][c-1] === '--') {
+			if(test_puzzle["chess_board"][r][c-1] === '--') {
 				possible_moves.push(`${r}${c-1}`)
 			}
-			else if(puzzle_info["chess_board"][r][c-1][0] === 'w' && piece[0] === 'b') {
+			else if(test_puzzle["chess_board"][r][c-1][0] === 'w' && piece[0] === 'b') {
 				possible_moves.push(`${r}${c-1}`)
 			}
-			else if(puzzle_info["chess_board"][r][c-1][0] === 'b' && piece[0] === 'w') {
+			else if(test_puzzle["chess_board"][r][c-1][0] === 'b' && piece[0] === 'w') {
 				possible_moves.push(`${r}${c-1}`)
 			}
 		}
 		// right
 		if (c <= 6) {
-			if(puzzle_info["chess_board"][r][c+1] === '--') {
+			if(test_puzzle["chess_board"][r][c+1] === '--') {
 				possible_moves.push(`${r}${c+1}`)
 			}
-			else if(puzzle_info["chess_board"][r][c+1][0] === 'w' && piece[0] === 'b') {
+			else if(test_puzzle["chess_board"][r][c+1][0] === 'w' && piece[0] === 'b') {
 				possible_moves.push(`${r}${c+1}`)
 			}
-			else if(puzzle_info["chess_board"][r][c+1][0] === 'b' && piece[0] === 'w') {
+			else if(test_puzzle["chess_board"][r][c+1][0] === 'b' && piece[0] === 'w') {
 				possible_moves.push(`${r}${c+1}`)
 			}
 		}
 		// castling
 		if (piece[0] === 'w') {
-			if (w_castle["k_side"] === true) {
+			if (w_castle["k_side"] === true && (test_puzzle["chess_board"][7][5] === "--" && test_puzzle["chess_board"][7][6] === "--")) {
 				possible_moves.push("76")
 			}
-			if (w_castle["q_side"] === true) {
+			if (w_castle["q_side"] === true && (test_puzzle["chess_board"][7][3] === "--" && test_puzzle["chess_board"][7][2] === "--" && test_puzzle["chess_board"][7][1] === "--")) {
 				possible_moves.push("72")
 			}
 		}
 		else if (piece[0] === 'b') {
-			if (b_castle["k_side"] === true) {
+			if (b_castle["k_side"] === true && (test_puzzle["chess_board"][0][5] === "--" && test_puzzle["chess_board"][0][6] === "--")) {
 				possible_moves.push("06")
 			}
-			if (b_castle["q_side"] === true) {
+			if (b_castle["q_side"] === true && (test_puzzle["chess_board"][0][3] === "--" && test_puzzle["chess_board"][0][2] === "--" && test_puzzle["chess_board"][0][1] === "--")) {
 				possible_moves.push("02")
 			}
 		}

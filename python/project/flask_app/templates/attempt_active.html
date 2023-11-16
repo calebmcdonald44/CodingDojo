@@ -10,14 +10,14 @@
         <div class="nav-bar space-between">
             <h1>Puzzle<span>Ladder</span></h1>
             <div class="nav-items flex">
-                <a href="">Play</a>
+                <a href="/play_setup/{{session['username']}}">Play</a>
                 <a href="">Leaderboards</a>
                 <a href="/">Logout</a>
             </div>
         </div>
         <div class="content flex-column">
-            <h1>{{session['time']}}</h1>
-            <h1>{{session['difficulty']}}</h1>
+            <!-- <h1>{{session['time']}}</h1>
+            <h1>{{session['difficulty']}}</h1> -->
             <table id="board"></table>
             <button onclick="getPuzzle()">Random Chess Puzzle</button>
         </div>
