@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocky Ranked</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+    <div class="banner flex space-around">
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickHome()" class="inactive">HOME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickAboutMe()" class="inactive" >ABOUT ME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickMovies()" class="inactive">MOVIES</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickOpponents()" class="active">OPPONENTS</button>
+    </div>
+    <div class="flex center">
+        <div class="content flex-column">
+            <div class="double-border">
+                <div class="opponent-ring flex-column border">
+                    <div class="name-and-quote">
+                        <h1>Ivan Drago</h1>
+                        <p>"If he dies, he dies."</p>
+                    </div>
+                    <div class="stat-card flex border-white">
+                        <img src="images/Ivan_Drago.png" alt="Ivan Drago in the boxing ring.">
+                        <div class="stats flex-column space-between">
+                            <div class="stat-row power space-between flex">
+                                <p class="attribute">POWER:</p>
+                                <div class="slider flex">
+                                    <div id="slider-power" class="slider-color"></div>
+                                    <div class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row stamina space-between flex">
+                                <p class="attribute">STAMINA:</p>
+                                <div class="slider flex">
+                                    <div id="slider-stamina" class="slider-color"></div>
+                                    <div class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row agility space-between flex">
+                                <p class="attribute">AGILITY:</p>
+                                <div class="slider flex">
+                                    <div id="slider-agility" class="slider-color"></div>
+                                    <div class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row chin space-between flex">
+                                <p class="attribute">CHIN:</p>
+                                <div class="slider flex">
+                                    <div id="slider-chin" class="slider-color"></div>
+                                    <div class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row strategy space-between flex">
+                                <p class="attribute">STRATEGY:</p>
+                                <div class="slider flex">
+                                    <div id="slider-strategy" class="slider-color"></div>
+                                    <div class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row intimidation space-between flex">
+                                <p class="attribute">INTIMIDATION:</p>
+                                <div class="slider flex">
+                                    <div id="slider-intimidation" class="slider-color"></div>
+                                    <div class="slider-knob"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="opponents-sections flex center border-white">
+                <div class="opponents-rank">
+                    <h1 class="rank-shadow">2</h1>
+                    <h1>2</h1>
+                </div>
+                <div class="opponents-content">
+                    <h1>The Fighter</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                        qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+            <div class="opponents-sections flex center border-white">
+                <div class="opponents-content-middle">
+                    <h1>The Character</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                        qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+                <div class="opponents-rank">
+                    <h1 class="rank-shadow">3</h1>
+                    <h1>3</h1>
+                </div>
+            </div>
+            <div class="buttons flex">
+                <button class="arrow-left" onmouseover="buttonHover2(this)" onmouseout="buttonLeave2(this)" onclick="previousPage()"><img id="arrow-left" src="images/arrow-left-white.png" alt="an arrow pointing left"></button>
+                <button class="arrow-right" onmouseover="buttonHover2(this)" onmouseout="buttonLeave2(this)" onclick="nextPage()"><img id="arrow-right" src="images/arrow-right-white.png" alt="an arrow pointing right"></button>
+            </div>
+        </div>
+    </div>
+    <script src="opponents2.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+</head>
+<body>
+    <div>
+        <form class="result" action="/">
+        <h1>{{user.name}}</h1>
+        <div class="flex">
+            <h3 class="color">Dojo Location:</h3>
+            <p class="color">{{user.location}}</p>
+        </div>
+        <div class="flex">
+            <h3 class="color">Favorite Language:</h3>
+            <p class="color">{{user.language}}</p>
+        </div>
+        <h3 class="color">Comments:</h3>
+        <p class="color">{{user.comments}}</p>
+            <button>Go Back</button>
+        </form>
+    </div>
+</body>
+</html>

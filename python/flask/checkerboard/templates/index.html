@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkerboard</title>
+    <style>
+        .center {
+            display: flex;
+            width: 100%;
+        }
+        .border {
+            flex-direction: column;
+            border: black solid 2px;
+            margin: 0 auto;
+        }
+        .row {
+            display: flex;
+        }
+        
+        .box1 {
+            height: 80px;
+            width: 80px;
+            background-color: {{color1}};
+        }
+        .box2 {
+            height: 80px;
+            width: 80px;
+            background-color: {{color2}};
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="center">
+        <div class="border">
+            {% for row in range(0, x): %}
+                {% if row % 2 == 0: %}
+                    <div class="row">
+                        {% for column in range(0, y): %}
+                            {% if column % 2 == 0: %}
+                                <div class="box1"></div>
+                            {% else: %}
+                                <div class="box2"></div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% else: %}
+                <div class="row">
+                    {% for column in range(0, y): %}
+                        {% if column % 2 == 0: %}
+                            <div class="box2"></div>
+                        {% else: %}
+                            <div class="box1"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

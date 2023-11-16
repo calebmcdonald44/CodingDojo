@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+</head>
+<body>
+    <form class="form1" action="/save_inputs", method="POST">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="red">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h1>Dojo Survey</h1>
+        <div class="duo">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div class="duo">
+            <label for="location">Dojo Location</label>
+            <select name="location" id="location">
+                <option value="invalid" disabled selected>-- Select a Location --</option>
+                <option value="Kansas City">Kansas City</option>
+                <option value="Lawrence">Lawrence</option>
+                <option value="Topeka">Topeka</option>
+                <option value="Manhattan">Manhattan</option>
+                <option value="Wichita">Wichita</option>
+            </select>
+        </div>
+        <div class="duo">
+            <label for="language">Favorite Language</label>
+            <select name="language" id="language">
+                <option value="invalid" disabled selected>-- Select a Language --</option>
+                <option value="HTML & CSS">HTML & CSS</option>
+                <option value="Python">Python</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Java">Java</option>
+                <option value="C#">C#</option>
+            </select>
+        </div>
+        <div class="duo">
+            <label for="comments">Comments:</label>
+            <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+        </div>
+        <button>Submit</button>
+    </form>
+</body>
+</html>

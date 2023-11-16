@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liking Likes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="banner">
+        <h1>Network</h1>
+    </div>
+    <div class="heading">
+        <h1>Your Feed</h1>
+    </div>
+
+    <div class="main flex">
+        <div class="left border flex-column">
+            <img src="icons/user-circle copy.png" alt="a placeholder user image photo.">
+            <a href="google.com">Add an avatar</a>
+            <h2>James Doe</h2>
+        </div>
+
+        <div class="right flex-column">
+            <div class="user border">
+                <div class="user-top flex">
+                    <div class="user-left">
+                        <h2>Neil M</h2>
+                    </div>
+                    <div class="user-right flex neil">
+                        <p><span id="like1">9</span> like(s)</p>
+                        <button onclick="increaseLikes('#like1', 0)" class="border neil">Like</button>
+                    </div>
+                </div>
+                <div class="user-body">
+                    <p>I just set up this new discord bot, let me know what you guys all think. <a href="google.com">link</a></p>
+                </div>
+            </div>
+
+            <div class="user border">
+                <div class="user-top flex">
+                    <div class="user-left">
+                        <h2>Nichole K</h2>
+                    </div>
+                    <div class="user-right flex nicole">
+                        <p><span id="like2">12</span> like(s)</p>
+                        <button onclick="increaseLikes('#like2', 1)" class="border nicole">Like</button>
+                    </div>
+                </div>
+                <div class="user-body">
+                    <p>Just finished my <a href="google.com">next comic</a>, check it out.</p>
+                </div>
+            </div>
+
+            <div class="user border">
+                <div class="user-top flex">
+                    <div class="user-left">
+                        <h2>Jim R</h2>
+                    </div>
+                    <div class="user-right flex jim">
+                        <p><span id="like3">9</span> like(s)</p>
+                        <button onclick="increaseLikes('#like3', 2)"class="border jim">Like</button>
+                    </div>
+                </div>
+                <div class="user-body">
+                    <p>I can't stop listening to the <a href="google.com">new album</a>. Who else is liking it?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="script.js"></script>
+</html>

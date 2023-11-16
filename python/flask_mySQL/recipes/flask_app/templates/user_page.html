@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/user_page.css') }}">
+</head>
+<body>
+    <div class="space-between">
+        <h1>Welcome {{session['first_name']}}!</h1>
+        <div class="flex gap">
+            <a href="/">Logout</a>
+            <a href="/new_recipe">Create New Recipe</a>
+        </div>
+    </div>
+    <h2>All posted recipes:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Under 30?</th>
+                <th>Posted By</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in recipes %}
+            <tr>
+                <td>{{r.name}}</td>
+                {% if r.under_30 == 0 %}
+                    <td>No</td>
+                {% else %}
+                    <td>Yes</td>
+                {% endif %}
+                <td>{{r.new_user.first_name}} {{r.new_user.last_name}}</td>
+                <td class="flex buttons">
+                    <a href="/recipe_page/{{r.id}}">View Page</a>
+                    {% if r.new_user.id == session['id'] %}
+                    <a href="/edit_recipe/{{r.id}}">Edit</a>
+                    <form action="/delete_recipe/{{r.id}}", method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/edit_recipe.css') }}">
+</head>
+<body>
+    <h1>Edit Recipe</h1>
+    <a href="/user_page/{{session['id']}}">back to recipes</a>
+    <a href="/">logout</a>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="/update_recipe/{{recipe.id}}" method="POST">
+
+        <label for="name">Name</label>
+        <input value="{{recipe.name}}" type="text" name="name" id="">
+
+        <label for="description">Description</label>
+        <textarea name="description" id="" cols="30" rows="10">{{recipe.description}}</textarea>
+
+        <label for="instructions">Instructions</label>
+        <textarea name="instructions" id="" cols="30" rows="10">{{recipe.instructions}}</textarea>
+
+        <label for="date_cooked">Date Cooked/Made</label>
+        <input value="{{recipe.date_cooked}}" type="date" name="date_cooked" id="">
+
+        <p>Under 30 minutes?</p>
+        {% if recipe.under_30 == 0 %}
+            <input type="radio" name="under_30" value="1">
+            <label for="yes">Yes</label>
+            <input type="radio" name="under_30" value="0" checked="checked">
+            <label for="no">No</label>
+        {% else %}
+            <input type="radio" name="under_30" checked="checked" value="1">
+            <label for="yes">Yes</label>
+            <input type="radio" name="under_30" value="0">
+            <label for="no">No</label>
+        {% endif %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

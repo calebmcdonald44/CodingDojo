@@ -1,0 +1,535 @@
+* {
+    border: 0;
+    margin: 0;
+}
+
+/* STYLE TAGS */
+
+.flex {
+    display: flex;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.space-around {
+    justify-content: space-around;
+}
+.space-between {
+    justify-content: space-between;
+}
+.space-evenly {
+    justify-content: space-evenly;
+}
+.center {
+    justify-content: center;
+}
+h1, h2, h3, h4, p, button, label, li, a {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.border {
+    border: 5px solid rgb(220, 20, 20);
+    border-radius: 5px;
+}
+.border-white {
+    border: 5px solid white;
+    border-radius: 5px;
+}
+.double-border {
+    border: 5px solid rgb(220, 20, 20);
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    box-shadow: 5px 5px 10px black;
+    margin: 0 auto;
+}
+.margin-top {
+    margin-top: 10px;
+}
+
+
+/* SHARED TAGS (on every page) */
+
+.banner {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgb(50, 50, 50);
+    height: 55px;
+    align-items: center;
+}
+.banner > button {
+    padding: 0 25px;
+    height: 80%;
+    border-radius: 10px;
+}
+.content {
+    width: 800px;
+    background-color: rgb(161, 161, 161);
+    padding: 20px;
+    gap: 20px;
+}
+.active {
+    background-color: rgb(205, 205, 205);
+    color: black;
+}
+.inactive {
+    background-color: rgb(50, 50, 50);
+    color: white;
+}
+
+/* HOME */
+/* Title Picture */
+
+.title-and-pic {
+    position: relative;
+}
+.title-and-pic > h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    font-stretch: 100%;
+    font-size: 100px;
+    width: fit-content;
+    transform: scale(1.3, 1);
+    position: absolute;
+}
+.rocky-steps {
+    box-shadow: 5px 5px 10px black;
+}
+.actual {
+    -webkit-text-stroke: 5px black;
+    bottom: 114px;
+    left: 128px;
+}
+.shadow {
+    bottom: 114px;
+    left: 125px;
+    color: white;
+    -webkit-text-stroke: 5px white;
+}
+.rocky-steps {
+    padding: 5px;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: white;
+}
+.rocky-steps > img {
+    width: 750px;
+    height: auto;
+}
+
+/* Explainer */
+
+.explainer {
+    margin: 20px 10px 0 10px;
+    padding: 10px;
+    gap: 10px;
+    background-color: rgb(50, 50, 50);
+    border-radius: 5px;
+}
+.explainer-quote {
+    height: 225px;
+    width: 225px;
+    font-style: italic;
+    text-align: center;
+    flex: 1;
+    padding: 10px;
+    font-size: 20px;
+    color: black;
+    background-color: rgb(205, 205, 205);
+    border-radius: 10px;
+}
+.explainer-quote > p {
+    margin: auto 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+
+.explainer > p {
+    flex: 2.2;
+    font-size: 20px;
+    color: white;
+}
+.github {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    color: black;
+}
+.explainer-body {
+    font-weight: 400;
+}
+.explainer-body > a {
+    color: white;
+    font-weight: bolder;
+}
+
+/* ABOUT ME */
+/* Personal Info */
+
+.content-alt {
+    position: relative;
+    width: 840px;
+    min-width: 840px;
+    background-color: rgb(161, 161, 161);
+}
+.left-banner {
+    position: sticky;
+    top: 55px;
+    background-color: rgb(205, 205, 205);
+    height: calc(100vh - 55px);
+    flex: 1;
+    align-items: center;
+}
+.left-banner > a {
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px;
+    width: 70%;
+    border-radius: 10px;
+    background-color: rgb(205, 205, 205);
+}
+.right-content {
+    flex: 4;
+}
+.scroll-to {
+    position: absolute;
+    top: -68px;
+}
+.outer-ring {
+    margin: 20px;
+    padding: 5px;
+    background-color: white;
+    box-shadow: 5px 5px 10px black;
+}
+.personal-info {
+    position: relative;
+    padding: 0px 10px 10px 10px;
+    background-color: rgb(205, 205, 205);
+    text-align: center;
+}
+.personal-info > h1 {
+    margin: 0;
+    text-shadow: -3px 0px white;
+}
+.personal-stats {
+    background-color: rgb(50, 50, 50);
+    padding: 10px;
+    gap: 10px;
+    margin-top: 10px;
+}
+.personal-stats > img {
+    height: 250px;
+    width: auto;
+    border: white 2px solid;
+    border-radius: 5px;
+}
+.stats {
+    margin: 10px;
+}
+.stat-row {
+    width: 400px;
+}
+
+/* Other Tags */
+.about-me-section {
+    padding: 10px;
+    margin: 0px 20px 20px 20px;
+    gap: 10px;
+    background-color: rgb(50, 50, 50);
+}
+.about-me-square {
+    height: 100px;
+    width: 100px;
+    min-width: 100px;
+    background-color: rgb(205, 205, 205);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* Squares */
+.about-me-square > img {
+    margin: 0 auto;
+}
+.work-history-square > img {
+    margin-top: -7px;
+}
+.contact-me-square > img {
+    height: 50px;
+}
+.skills-square > img {
+    height: 77px;
+}
+.github-square > img {
+    height: 70px;
+}
+.education-square > img {
+    height: 80px;
+}
+.work-history-square > img {
+    width: 90px;
+}
+
+/* other */
+.about-me-body {
+    color: white;
+    width: 100%;
+}
+.about-me-body > h1 {
+    border-bottom: 2px white solid;
+}
+.body-info, .first-line, .first-line1 {
+    font-size: 14px;
+}
+.first-line1 {
+    margin-top: 3px;
+}
+.first-line {
+    margin-top: 10px;
+}
+li {
+    margin-left: -12px;
+}
+.education, .work-history, .skills, .github2, .contact-me {
+    position: relative;
+}
+.contact-me-something {
+    height: 70px;
+}
+.about-me-links {
+    color: white;
+}
+.github-body > h3 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+/* MOVIES */
+/* Rank and Poster */
+
+.rank-and-poster {
+    background-color: rgb(205, 205, 205);
+    padding: 20px;
+    gap: 30px;
+    position: relative;
+}
+.ranking > h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 250px;
+    width: 202px;
+    transform: scale(1.3, 1);
+    text-align: center;
+}
+.ranking8 > h1 {
+    margin-top: -15px;
+}
+.ranking-shadow {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 250px;
+    color: white;
+    width: fit-content;
+    transform: scale(1.3, 1);
+    position: absolute;
+    left: 11px;
+}
+.movie-name {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: -30px;
+    text-shadow: -3px 0px white;
+}
+.movie-name8 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: -46px;
+    text-shadow: -3px 0px white;
+}
+.movie-name8-2 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: -10px;
+    text-shadow: -3px 0px white;
+}
+.ranking {
+    align-items: center;
+    margin-top: -30px;
+}
+.rank-and-poster > img {
+    height: 300px;
+    width: auto;
+    border: black 2px solid;
+    border-radius: 5px;
+}
+.poster-container {
+    background-color: white;
+    padding: 5px;
+}
+
+/* Good, Bad, Verdict */
+
+.movies-sections {
+    background-color: rgb(50, 50, 50);
+    justify-content: space-between;
+    padding: 10px;
+}
+.movies-quote {
+    background-color: rgb(205, 205, 205);
+    height: 235px;
+    width: 235px;
+    min-width: 235px;
+    border-radius: 10px;
+    justify-content: center;
+}
+.movies-quote2 {
+    text-align: center;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+.movies-content {
+    color: white;
+}
+.movies-content > p {
+    font-size: 20px;
+}
+.the-good {
+    margin-left: 10px;
+}
+
+/* OPPONENTS */
+
+.opponent-ring {
+    background-color: rgb(205, 205, 205);
+}
+.name-and-quote {
+    text-align: center;
+}
+.name-and-quote > h1 {
+    text-shadow: -3px 0px white;
+}
+.name-and-quote > p {
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.stat-card {
+    padding: 10px;
+    margin: 0px 10px 10px 10px;
+    gap: 10px;
+    background-color: rgb(50, 50, 50);
+}
+.stat-card > img {
+    border: white 2px solid;
+    border-radius: 5px;
+    height: 270px;
+    width: auto;
+}
+.stats {
+    margin: 10px 0;
+}
+.stat-row {
+    gap: 10px;
+}
+.attribute {
+    color: white;
+    font-weight: 600;
+    margin: auto 0;
+}
+.slider {
+    position: relative;
+    width: 210px;
+    height: 20px;
+    max-width: 210px;
+    border: white 3px solid;
+    border-radius: 15px;
+    vertical-align: middle;
+}
+.slider-color {
+    width: 2%;
+    margin: 4px;
+    background-color: white;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    transition: 0.7s;
+}
+.slider-knob {
+    height: 14px;
+    width: 14px;
+    border: solid rgb(50, 50, 50) 1px;
+    margin: 2px 0px 2px -12px;
+    background-color: white;
+    border-radius: 50%;
+}
+.opponents-sections {
+    background-color: rgb(50, 50, 50);
+    justify-content: space-between;
+    padding: 10px;
+}
+.opponents-rank {
+    background-color: rgb(205, 205, 205);
+    height: 235px;
+    width: 235px;
+    min-width: 235px;
+    border-radius: 10px;
+    position: relative;
+}
+.opponents-rank > h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 205px;
+    transform: scale(1.3, 1);
+    text-align: center;
+}
+.rank-shadow {
+    color: white;
+    position: absolute;
+    bottom: 0px;
+    left: 62px;
+}
+.opponents-content {
+    color: white;
+    width: 100%;
+    margin: 0px 0px 10px 10px;
+}
+.opponents-content-middle {
+    color: white;
+    width: 100%;
+    margin: 0px 10px 10px 0px;
+}
+.opponents-content-middle > p {
+    font-size: 20px;
+}
+.opponents-content > p {
+    font-size: 20px;
+}
+.buttons {
+    gap: 10px;
+    justify-content: space-around;
+}
+.buttons > * {
+    width: 150px;
+    height: 90px;
+    color: white;
+    font-size: 35px;
+    background-color: rgb(50, 50, 50);
+    border-radius: 20px;
+    border: 5px solid white;
+}
+button > img {
+    margin: -3px auto 0px auto;
+    width: 130px;
+    height: auto;
+}
+
+

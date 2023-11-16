@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/recipe_page.css') }}">
+</head>
+<body>
+    <h1>Welcome {{session['first_name']}}!</h1>
+    <a href="/user_page/{{session['id']}}">back to recipes</a>
+    <a href="/">logout</a>
+    <div class="flex">
+        <h1>{{recipe.name}}</h1>
+        <p>Posted by: {{recipe.user.first_name}}</p>
+
+    </div>
+    <div>
+        <div class="flex">
+            <p>Description: </p>
+            <p>{{recipe.description}}</p>
+        </div>
+        <div class="flex">
+            <p>Under 30 Minutes? </p>
+            {% if recipe.under_30 == 0: %}
+                <p>No</p>
+            {% else: %}
+                <p>Yes</p>
+            {% endif %}
+        </div>
+        <div class="flex">
+            <p>Instructions: </p>
+            <p>{{recipe.instructions}}</p>
+        </div>
+        <div class="flex">
+            <p>Date Made: </p>
+            <p>{{recipe.date_cooked}}</p>
+        </div>
+    </div>
+</body>
+</html>

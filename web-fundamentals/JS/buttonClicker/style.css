@@ -1,0 +1,101 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* STYLE TAGS */
+
+.flex {
+    display: flex;
+}
+.column {
+    flex-direction: column;
+}
+.space-between {
+    justify-content: space-between;
+}
+.border {
+    border: 3px solid black;
+}
+.gap {
+    gap: 25px;
+}
+h1, h2, h3, h4, p, button, text {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+}
+
+/* SECTION TAGS */
+
+body {
+    padding: 0% 8%;
+}
+
+/* Banner */
+
+.banner {
+    background-color: rgb(164, 164, 164);
+    padding: 10px 20px 10px 20px;
+    align-items: center;
+}
+.search-bar {
+    width: 50%;
+    height: 25px;
+}
+.banner > button {
+    width: 70px;
+    height: 30px;
+    font-size: 15px;
+    color: white;
+    background-color: rgb(0, 94, 255);
+    box-shadow: 3px 3px black;
+}
+
+/* Main */
+
+.main {
+    margin-top: 25px;
+}
+/* Left Column */
+.left {
+    flex: 2;
+}
+.ninja {
+    align-items: center;
+    padding: 15px 20px 15px 15px;
+    gap: 50px;
+}
+.ninja-left {
+    text-align: center;
+}
+.ninja-left > button {
+    width: 85px;
+    height: 35px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: black;
+    background-color: rgb(255, 234, 7);
+    box-shadow: 3px 3px black;
+}
+.ninja-left > h1, h3, p {
+    margin: 5px;
+}
+/* Right Column */
+.right {
+    flex: 1;
+    padding: 15px;
+    height: fit-content;
+    min-height: 120px;
+    text-align: center;
+}
+.right > button {
+    width: 160px;
+    height: 35px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: black;
+    background-color: rgb(119, 193, 112);
+    box-shadow: 3px 3px black;
+}

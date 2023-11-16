@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+</head>
+<body>
+        <div class="header">
+            <h1>Edit User</h1>
+            <a href="/">Home</a>
+        </div>
+        <form action="/edit_user", method="POST">
+            <div class="duo">
+                <label for="first_name">First Name:</label>
+                <input value="{{user.first_name}}" type="text" name="first_name" id="first_name">
+            </div>
+            <div class="duo">
+                <label for="last_name">Last Name:</label>
+                <input value="{{user.last_name}}" type="text" name="last_name" id="last_name">
+            </div>
+            <div class="duo">
+                <label for="email">Email:</label>
+                <input value="{{user.email}}" type="text" name="email" id="email">
+            </div>
+            <input name="id" type="hidden" value="{{user.id}}">
+            <button>Update</button>
+        </form>
+</body>
+</html>

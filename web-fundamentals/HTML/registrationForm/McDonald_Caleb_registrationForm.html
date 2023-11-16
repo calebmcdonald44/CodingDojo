@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <h1>Registration Form</h1>
+        <label>First Name: * </label>
+        <input type="text" name="first_name"><br>
+        <label>Last Name: * </label>
+        <input type="text" name="last_name"><br>
+        <label>Email Address: * </label>
+        <input type="text" name="email_address"><br>
+        <label>Password: * </label>
+        <input type="text" name="password"><br>
+        <label>Confirm Password: * </label>
+        <input type="text" name="confirm_password"><br>
+        <label>Birthday: </label>
+        <input type="text" name="birthday"><br>
+        <label>Gender Identity: </label><br>
+        <input type="radio" name="gender_identity" value="male" id="male">
+        <label for="male">Male </label>
+        <input type="radio" name="gender_identity" value="female" id="female">
+        <label for="female">Female </label>
+        <input type="radio" name="gender_identity" value="non-binary" id="non-binary">
+        <label for="non-binary">Non-binary </label>
+        <input type="radio" name="gender_identity" value="not_answer" id="not_answer">
+        <label for="not_answer">I prefer not to answer</label><br>
+        <label>A short description about myself: </label><br>
+        <textarea></textarea><br>
+        <label>Favorite Language: </label>
+        <select name="language">
+            <option value="Almonds">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="C#">C#</option>
+        </select><br>
+        <input type="checkbox" name="email_updates">
+        <label for="email_updates">Yes, I would like to receive periodic email updates</label><br>
+        <input type="submit" value="Create Account"><br>
+        <p>* Indicates a required field</p>
+        </form>
+</body>
+</html>

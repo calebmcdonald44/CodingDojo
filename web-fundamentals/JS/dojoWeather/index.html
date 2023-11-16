@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DojoWeather</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- BANNER -->
+    <div class="banner flex space-between">
+        <h1 class="dojo-weather">DojoWeather</h1>
+        <div class="cities">
+            <button>Burbank</button>
+            <button>Chicago</button>
+            <button>Dallas</button>
+        </div>
+    </div>
+    <!-- HEADER -->
+    <div class="margin">
+        <div class="header flex space-between">
+            <h1>San Jose</h1>
+            <div class="temp-selector">
+                <label for="temperature">show temperature in:</label>
+                <select onchange="convertTemp(this, '.temp')" name="temperature" id="temperature">
+                    <option selected value="Celcius">°C</option>
+                    <option value="Fahrenheit">°F</option>
+                </select>
+            </div>
+        </div>
+        <!-- CONTENT -->
+        <div class="content flex center gap">
+            <div class="days flex-column gap">
+                <h2>Today</h2>
+                <img src="assets/some_rain.png" alt="a rain cloud.">
+                <p>some rain</p>
+                <div class="highs-lows flex space-between">
+                    <h2 class="high"><span class="temp">24</span>°</h2>
+                    <h2 class="low"><span class="temp">18</span>°</h2>
+                </div>
+            </div>
+            <div class="days flex-column gap">
+                <h2>Tomorrow</h2>
+                <img src="assets/some_sun.png" alt="the sun.">
+                <p>some sun</p>
+                <div class="highs-lows flex space-between">
+                    <h2 class="high"><span class="temp">27</span>°</h2>
+                    <h2 class="low"><span class="temp">19</span>°</h2>
+                </div>
+            </div>
+            <div class="days flex-column gap">
+                <h2>Friday</h2>
+                <img src="assets/some_clouds.png" alt="a cloud.">
+                <p>some clouds</p>
+                <div class="highs-lows flex space-between">
+                    <h2 class="high"><span class="temp">21</span>°</h2>
+                    <h2 class="low"><span class="temp">16</span>°</h2>
+                </div>
+            </div>
+            <div class="days flex-column gap">
+                <h2>Saturday</h2>
+                <img src="assets/some_sun.png" alt="the sun.">
+                <p>some sun</p>
+                <div class="highs-lows flex space-between">
+                    <h2 class="high"><span class="temp">26</span>°</h2>
+                    <h2 class="low"><span class="temp">21</span>°</h2>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="script.js"></script>
+    </html>
+    

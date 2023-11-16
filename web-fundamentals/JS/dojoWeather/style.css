@@ -1,0 +1,100 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* STYLE TAGS */
+
+.flex {
+    display: flex;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.space-between {
+    justify-content: space-between;
+}
+.center {
+    justify-content: center;
+}
+.border {
+    border: 3px black solid;
+}
+.margin {
+    margin: 0 8%;
+}
+.gap {
+    gap: 20px;
+}
+
+/* SECTION TAGS */
+
+h1, h2, h3, p, label, button {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Banner */
+
+.banner {
+    background-color: rgb(125, 205, 232);
+    padding: 0 8%;
+    min-width: 820px;
+}
+.dojo-weather {
+    font-size: 40px;
+    color: white;
+    margin: 10px 0px;
+}
+.cities {
+    margin: auto 0;
+}
+.cities > button {
+    background-color: rgb(125, 205, 232);
+    color: white;
+    border: none;
+    font-size: 22px;
+    margin-left: 20px;
+}
+
+/* Header */
+
+.header {
+    margin: 15px 0px 20px 0px;
+    padding: 10px 0px;
+    border-bottom: 3px black solid;
+    align-items: center;
+    width: 100%;
+    min-width: 820px;
+}
+
+/* Content */
+
+.content {
+    min-width: 820px;
+}
+.days {
+    background-color: rgb(195, 195, 195);
+    padding: 20px;
+    flex: 1;
+}
+.days > img {
+    border-radius: 50%;
+    margin: 0 auto;
+    height: 150px;
+    width: 150px;
+}
+.days > * {
+    text-align: center;
+}
+.days > p {
+    font-size: 20px;
+}
+.high {
+    color: red;
+}
+.low {
+    color: blue;
+}
+
+

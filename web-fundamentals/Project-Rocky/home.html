@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocky Ranked</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+    <div class="banner flex space-around">
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickHome()" class="active">HOME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickAboutMe()" class="inactive" >ABOUT ME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickMovies()" class="inactive">MOVIES</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickOpponents()" class="inactive">OPPONENTS</button>
+    </div>
+    <div class="flex center">
+        <div class="content">
+            <div class="title-and-pic">
+                <div class="rocky-steps flex border shadow">
+                    <img class="border" src="images/rocky-steps.jpg" alt="Rocky looking out over Philadelphia, arms raised in triumph.">
+                </div>
+                <h1 class="shadow">ROCKY<br>RANKED</h1>
+                <h1 class="actual">ROCKY<br>RANKED</h1>
+            </div>
+            <div class="explainer flex border-white">
+                <div class="explainer-quote flex-column">
+                    <p>"Rocky, why do you <a onmouseover="highlightLink2(this)" onmouseout="undoHighlightLink2(this)" class="github" href="https://github.com/calebmcdonald44">code</a>?"</p>
+                    <p>"Because I can't sing or dance."</p>
+                </div>
+                <p class="explainer-body">Sports beg for comparison. MJ or Lebron? The '16-'17 Warriors 
+                    or the '91-'92 Bulls? Although fictional, the Rocky franchise 
+                    is no different. Whether it be the movies themselves or the
+                    fighters within them, there are those that can go the distance,
+                    and those that would suffer a first-round KO from Spider
+                    Rico. But why trust my opinion on the franchise?
+                    If you're skeptical of my rankings, feel free to check out 
+                    <a onmouseover="highlightLink(this)" onmouseout="undoHighlightLink(this)" class="credentials" href="about-me.html">my credentials</a>. Otherwise,
+                    here's my rankings of the <a onmouseover="highlightLink(this)" onmouseout="undoHighlightLink(this)" href="movies1.html">movies</a> and the <a onmouseover="highlightLink(this)" onmouseout="undoHighlightLink(this)" href="opponents1.html">opponents</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/attempt_active.css') }}">
+    </head>
+    <body>    
+        <div class="nav-bar space-between">
+            <h1>Puzzle<span>Ladder</span></h1>
+            <div class="nav-items flex">
+                <a href="">Play</a>
+                <a href="">Leaderboards</a>
+                <a href="/">Logout</a>
+            </div>
+        </div>
+        <div class="content flex-column">
+            <h1>{{session['time']}}</h1>
+            <h1>{{session['difficulty']}}</h1>
+            <table id="board"></table>
+            <button onclick="getPuzzle()">Random Chess Puzzle</button>
+        </div>
+    </body>
+    <script src="{{ url_for('static', filename='/js/attempt_active.js') }}"></script>
+    </html>

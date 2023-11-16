@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-left-side">
+            <h1 class="nav-title">Profile</h1>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#" class="active">My Profile</a></li>
+                <li><a href="#">Find Connections</a></li>
+            </ul>
+        </div>
+        <button class="btn">Sign Out</button>
+    </div>
+
+    <div class="fake-body">
+        <!-- Left column -->
+        <div class="left-column">
+            <div class="user-card">
+                <div class="top"></div>
+                <div class="bottom three-borders">
+                    <img class="profile-pic" src="icons/user-circle.png" alt="a placeholder image for a profile picture.">
+                    <div class="info">
+                        <h1 id="user-name">Jane Doe</h1>
+                        <div class="line-with-pic">
+                            <img class="img marker" src="icons/map-marker.png" alt="a map marker.">
+                            <h3>Seattle</h3>
+                        </div>
+                        <p>Developer | Engineer | Problem Solver</p>
+                        <p>Master of shadows and the Internet!</p>
+                        <div class = "line-with-pic">
+                            <img class="img" src="icons/gear.png" alt="a mechanical gear.">
+                            <p onclick="editName('#user-name')" >edit profile</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="education">
+                <div class="banner">
+                    <p class="banner-text ed-text">Education</p>
+                </div>
+                <div class="education-body three-borders">
+                    <h3 class="ed-text">Coding Dojo</h3>
+                    <p class="ed-text dates">Dec 2019 - Mar 2020</p>
+                    <p class="ed-text">Triple black belt in Python, MERN, and C#...</p>
+                </div>
+            </div>
+        </div>
+        <!-- Right Column -->
+        <div class="right-column">
+            <div class="connection-requests">
+                <div class="banner">
+                    <div class="bubble cr-bubble">
+                        <p id="bubble-text1" class="bubble-text">2</p>
+                    </div>
+                    <p class="banner-text">Connection Requests</p>
+                </div>
+                <div class="cr-body three-borders">
+                    <div id="user-line1" class="user-line cr-user-line">
+                        <div class="user-line-left">
+                            <img class="tiny-pic" src="icons/user-circle.png" alt="a placeholder image for a profile picture.">
+                            <p class="names">Todd E</p>
+                        </div>
+                        <div>
+                            <img onclick="hide('#user-line1', 'yes')" class="yes-or-no" src="icons/accept-circle.png" alt="a checkmark in a circle.">
+                            <img onclick="hide('#user-line1', 'no')" class="yes-or-no" src="icons/close-circle.png" alt="an 'X' in a circle.">
+                        </div>
+                    </div>
+                    <div id="user-line2" class="user-line cr-user-line">
+                        <div class="user-line-left">
+                            <img class="tiny-pic" src="icons/user-circle.png" alt="a placeholder image for a profile picture.">
+                            <p class="names">Phil K</p>
+                        </div>
+                        <div>
+                            <img onclick="hide('#user-line2', 'yes')" class="yes-or-no" src="icons/accept-circle.png" alt="a checkmark in a circle.">
+                            <img onclick="hide('#user-line2', 'no')" class="yes-or-no" src="icons/close-circle.png" alt="an 'X' in a circle.">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="your-connections">
+                <div class="banner">
+                    <div class="bubble yc-bubble">
+                        <p id="bubble-text2" class="bubble-text">483</p>
+                    </div>
+                    <p class="banner-text">Your Connections</p>
+                </div>
+                <div class="yc-body three-borders">
+                    <div class="user-line yc-user-line">
+                        <img class="tiny-pic" src="icons/user-circle.png" alt="a placeholder image for a profile picture.">   
+                        <p class="names">Adrien D</p> 
+                    </div>
+                    <div class="user-line yc-user-line">
+                        <img class="tiny-pic" src="icons/user-circle.png" alt="a placeholder image for a profile picture.">
+                        <p class="names">Anne J</p>
+                    </div>
+                    <div class="user-line yc-user-line">
+                        <img class="tiny-pic" src="icons/user-circle.png" alt="a placeholder image for a profile picture.">
+                        <p class="names">Alayne T</p>
+                    </div>
+                    <div class="user-line yc-user-line">
+                        <img class="tiny-pic" src="icons/user-circle.png" alt="a placeholder image for a profile picture.">
+                        <p class="names">Arry Y</p>
+                    </div>
+                </div>
+                <div class="yc-footer three-borders">
+                    <p class="view-more">View More</p>
+                </div>
+            </div>
+        </div>   
+    </div>
+</body>
+<script src="script.js"></script>
+</html>

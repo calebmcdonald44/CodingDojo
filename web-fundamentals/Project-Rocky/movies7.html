@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocky Ranked</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+    <div class="banner flex space-around">
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickHome()" class="inactive">HOME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickAboutMe()" class="inactive" >ABOUT ME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickMovies()" class="active">MOVIES</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickOpponents()" class="inactive">OPPONENTS</button>
+    </div>
+    <div class="flex center">
+        <div class="content flex-column">
+            <div class="double-border">
+                <div class="rank-and-poster flex border space-between">
+                    <div class="ranking flex-column">
+                        <h1 class="ranking-shadow">7</h1>
+                        <h1>7</h1>
+                        <p class="movie-name">Creed II</p>
+                    </div>
+                    <img src="images/Creed-II-poster.png" alt="The poster for the film Rocky V. Rocky fist pumping in the foreground, Rocky holding up an American flag in the background.">
+                </div>
+            </div>
+            <div class="movies-sections flex center border-white">
+                <div class="movies-quote flex-column">
+                    <p class="movies-quote2">"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+                </div>
+                <div class="movies-content the-good">
+                    <h1>The Good</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                        qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+            <div class="movies-sections flex center border-white">
+                <div class="movies-content">
+                    <h1>The Bad</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
+                        qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+                <div class="movies-quote flex-column">
+                    <p class="movies-quote2">"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+                </div>
+            </div>
+            <div class="buttons flex">
+                <button class="arrow-left" onmouseover="buttonHover2(this)" onmouseout="buttonLeave2(this)" onclick="previousPage()"><img id="arrow-left" src="images/arrow-left-white.png" alt="an arrow pointing left"></button>
+                <button class="arrow-right" onmouseover="buttonHover2(this)" onmouseout="buttonLeave2(this)" onclick="nextPage()"><img id="arrow-right" src="images/arrow-right-white.png" alt="an arrow pointing right"></button>
+            </div>
+        </div>
+    </div>
+    <script src="movies7.js"></script>
+</body>
+</html>

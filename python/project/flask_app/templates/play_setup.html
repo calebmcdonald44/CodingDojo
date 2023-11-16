@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/play_setup.css') }}">
+</head>
+<body>    
+    <div class="nav-bar space-between">
+        <h1>Puzzle<span>Ladder</span></h1>
+        <div class="nav-items flex">
+            <a href="">Play</a>
+            <a href="">Leaderboards</a>
+            <a href="/">Logout</a>
+        </div>
+    </div>
+    <div class="content flex-column">
+        <h3 class="welcome">Welcome {{user.username}}!</h3>
+        <h1 class="ladder1">Are you ready to</h1>
+        <h1 class="ladder2">Climb the <span>Ladder</span>?</h1>
+        <form action="/attempt_info" method="POST">
+            <h2 class="choose_board">Choose a Board:</h2>
+            <div class="space-around">
+                {% for color in colors %}
+                    <div id="{{color}}">
+                        <table>
+                            {% for i in range(board) %}
+                                {% if i % 2 == 0 %}
+                                    <tr>
+                                        <td></td><td class="{{color}}"></td><td></td><td class="{{color}}"></td><td></td><td class="{{color}}"></td><td></td><td class="{{color}}"></td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td class="{{color}}"></td><td></td><td class="{{color}}"></td><td></td><td class="{{color}}"></td><td></td><td class="{{color}}"></td><td></td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </div>
+                {% endfor %}
+            </div>
+            <h2>Choose Your Settings:</h2>
+            <div class="space-around">
+                <select name="time" id="">
+                    <option selected disabled value="">Time</option>
+                    <option value="1">1:00</option>
+                    <option value="3">3:00</option>
+                    <option value="5">5:00</option>
+                </select>
+                <select name="difficulty" id="">
+                    <option selected disabled value="">Difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <h2>Begin the Climb!</h2>
+            <button type="submit">Begin</button>
+        </form>
+    </div>
+</body>
+</html>

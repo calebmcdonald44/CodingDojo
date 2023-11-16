@@ -1,0 +1,9 @@
+terminal instructions for new server.py file
+- open terminal
+- navigate to file
+- pipenv install flask
+- pipenv shell
+- python3 server.py
+
+Link css (or js) to html while using python through flask
+{{ url_for('static', filename='/css/style.css') }}

@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* STYLE TAGS */
+.flex {
+    display: flex;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+.space-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* GENERAL TAGS */
+h1, h2, h3 {
+    color: white;
+}
+body {
+    background-image: url("images/background.png");
+    background-size: 300px;
+}
+.nav-bar {
+
+    background-color: black;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+.nav-bar > h1, .nav-items {
+    padding: 10px;
+    color: white;
+    margin: auto 0;
+    gap: 40px;
+}
+.nav-items > a {
+    color: white;
+    text-decoration: none;
+}
+.nav-bar > h1 {
+    min-width: 400px;
+}
+span {
+    color: #779556;
+}
+.content {
+    height: 100%;
+    min-width: 700px;
+    margin: 0 20%;
+    background-color: rgb(0, 0, 0, .8);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 0px 0px 40px 0px;
+}
+
+/* PAGE TAGS */
+.welcome {
+    margin: 5px;
+    color: white;
+}
+.ladder1 {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+}
+.ladder2 {
+    text-align: center;
+    color: white;
+    font-size: 70px;
+    margin-top: -30px;
+}
+form {
+    text-align: center;
+}
+.choose_board {
+    margin-top: -10px;
+}
+table {
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+td {
+    height: 20px;
+    width: 20px;
+    background-color: white;
+}
+.green {
+    background-color: #779556;
+}
+.blue {
+    background-color: #4d74ad;
+}
+.red {
+    background-color: #ac5046;
+}
+select {
+    margin: 20px 0;
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    font-size: 32px;
+}
+button {
+    margin-top: 20px;
+    font-size: 60px;
+    font-weight: 600;
+    background-color: #779556;
+    border: 5px solid black;
+    border-radius: 10px;
+    box-shadow: 3px 3px;
+    padding: 10px 30px;
+}

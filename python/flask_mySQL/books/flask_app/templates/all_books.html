@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+</head>
+<body class="flex">
+    <div class="left">
+        <h1>New Book</h1>
+        <form action="/">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="">
+            <button>Create</button>
+        </form>
+    </div>
+    <div class="right">
+        <h1>All Books</h1>
+        <div class="all-rows">
+            {% for book in books: %}
+                <a href="">{{book.name}}</a>
+            {% endfor %}
+        </div>
+        <a href="">Add Book</a>
+    </div>
+</body>
+</html>

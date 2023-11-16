@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="banner flex space-between">
+        <h1 class="website-name">Dojonary</h1>
+        <input class="search-bar border" type="text" placeholder="Search">
+        <button class="border" onclick="toggle(this)">Login</button>
+    </div>
+    <div class="main flex gap">
+        <div class="left flex column gap">
+            <div class="ninja flex border">
+                <div class="ninja-left">
+                    <h1>ninja</h1>
+                    <h3>noun</h3>
+                    <p>Plural: <i>ninjas</i></p>
+                    <button class="border" onclick="alert('Ninja was liked.')">13 likes</button>
+                </div>
+                <h3>A practitioner skilled in the <a href="google.com">Japanese</a> art of <a href="google.com">ninjutsu</a>.</h3>
+            </div>
+            <div class="ninja flex border">
+                <div class="ninja-left">
+                    <h1>ninja</h1>
+                    <h3>noun</h3>
+                    <p>Plural: <i>ninjas</i></p>
+                    <button class="border" onclick="alert('Ninja was liked.')">37 likes</button>
+                </div>
+                <h3>A <a href="google.com">programmer</a> who breaks down problems with <a href="google.com">zen</a>-like focus.</h3>
+            </div>
+        </div>
+        <div class="right border">
+            <h2>Dojonary is defined by <b>YOU</b></h2>
+            <button class="border" onclick="hide(this)">Add Definition</button>
+        </div>
+    </div>
+</body>
+<script src="script.js">
+</script>
+</html>

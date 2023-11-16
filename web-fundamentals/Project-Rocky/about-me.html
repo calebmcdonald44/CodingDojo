@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocky Ranked</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+    <div class="banner flex space-around">
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickHome()" class="inactive">HOME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickAboutMe()" class="active" >ABOUT ME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickMovies()" class="inactive">MOVIES</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickOpponents()" class="inactive">OPPONENTS</button>
+    </div>
+    <div class="flex center">
+        <div class="content-alt flex">
+            <div class="left-banner flex-column space-around">
+                <a onmouseover="buttonHover3(this)" onmouseout="buttonLeave3(this)" href="#personal-info">Personal Info</a>
+                <a onmouseover="buttonHover3(this)" onmouseout="buttonLeave3(this)" href="#education">Education</a>
+                <a onmouseover="buttonHover3(this)" onmouseout="buttonLeave3(this)" href="#work-history">Work History</a>
+                <a onmouseover="buttonHover3(this)" onmouseout="buttonLeave3(this)" href="#skills">Skills</a>
+                <a onmouseover="buttonHover3(this)" onmouseout="buttonLeave3(this)" href="#github">GitHub</a>
+                <a onmouseover="buttonHover3(this)" onmouseout="buttonLeave3(this)" href="#contact-me">Contact Me</a>
+            </div>
+            <div class="right-content">
+                <div class="outer-ring border">
+                    <div class="personal-info border">
+                        <div id="personal-info" class="scroll-to"></div>
+                        <h1>Personal Info</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        </p>
+                        <div class="personal-stats flex border-white">
+                            <img src="images/caleb-rocky.png" alt="">
+                            <div class="stats flex-column space-between">
+                                <div class="stat-row intimidation space-between flex">
+                                    <p class="attribute">ATTITUDE:</p>
+                                    <div class="slider flex">
+                                        <div id="slider-power" class="slider-color"></div>
+                                        <div id="knob-intimidation" class="slider-knob"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-row intimidation space-between flex">
+                                    <p class="attribute">CHARACTER:</p>
+                                    <div class="slider flex">
+                                        <div id="slider-stamina" class="slider-color"></div>
+                                        <div id="knob-intimidation" class="slider-knob"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-row intimidation space-between flex">
+                                    <p class="attribute">WORK ETHIC:</p>
+                                    <div class="slider flex">
+                                        <div id="slider-agility" class="slider-color"></div>
+                                        <div id="knob-intimidation" class="slider-knob"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-row intimidation space-between flex">
+                                    <p class="attribute">COMMUNICATION:</p>
+                                    <div class="slider flex">
+                                        <div id="slider-chin" class="slider-color"></div>
+                                        <div id="knob-intimidation" class="slider-knob"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-row intimidation space-between flex">
+                                    <p class="attribute">COLLABORATION:</p>
+                                    <div class="slider flex">
+                                        <div id="slider-strategy" class="slider-color"></div>
+                                        <div id="knob-intimidation" class="slider-knob"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-me-section education flex border-white">
+                    <div id="education" class="scroll-to"></div>
+                    <div class="about-me-square education-square border-white">
+                        <img src="images/kansas-state-wildcats-logo-png-transparent.png" alt="Kansas State University powercat logo.">
+                    </div>
+                    <div class="about-me-body education-body">
+                        <h1>Education</h1>
+                        <div class="body-info">
+                            <div class="first-line1 flex space-between">
+                                <h3>Coding Dojo</h3>
+                                <p>September 2023-Current</p>
+                            </div>
+                            <p><em>Full Stack Web Development Bootcamp</em></p>
+                            <div class="first-line flex space-between">
+                                <h3>Kansas State University</h3>
+                                <p>August 2018-May 2021</p>
+                            </div>    
+                            <p><em>Bachelor of Science in Business Administration</em></p>
+                            <p><em>Major: Marketing</em></p>
+                            <p><em>Certificate in Business of Sports and Entertainment</em></p>
+                            <div class="first-line flex space-between">
+                                <h3>Manhattan Christian College</h3>
+                                <p>August 2017-May 2018</p>
+                            </div>    
+                            <p><em>Member of the baseball team</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-me-section work-history flex border-white">
+                    <div id="work-history" class="scroll-to"></div>
+                    <div class="about-me-square work-history-square border-white">
+                        <img src="images/garmin-logo.png" alt="the logo for Garmin">
+                    </div>
+                    <div class="about-me-body work-history-body">
+                        <h1>Work History</h1>
+                        <div class="body-info">
+                            <div class="first-line1 flex space-between">
+                                <h3>Garmin</h3>
+                                <p>March 2022-September 2023</p>
+                            </div>
+                            <p><em>Materials Handler</em></p>
+                            <ul>
+                                <li>Utilized picking and packing software to package products for delivery</li>
+                                <li>Disassembled and logged defective products</li>
+                                <li>'Exceeded Expectations' in every category of first-year performance review</li>
+                            </ul>
+                            <div class="first-line flex space-between">
+                                <h3>United Parcel Service</h3>
+                                <p>July 2021-March 2022</p>
+                            </div>    
+                            <p><em>Package Handler, Package Delivery Driver</em></p>
+                            <ul>
+                                <li>Unloaded semi-truck trailers in temperatures exceeding 100 degrees</li>
+                                <li>Ensured the smooth flow of packages on conveyer belts</li>
+                                <li>Seasonal driver during the holiday rush from November-December</li>
+                            </ul>
+                            <div class="first-line flex space-between">
+                                <h3>Wildcat Watch Video Production</h3>
+                                <p>September 2020-May 2021</p>
+                            </div>    
+                            <p><em>Marketing Manager</em></p>
+                            <ul>
+                                <li>Edited videos for Kansas State University using Adobe Premiere Pro</li>
+                                <li>Operated cameras for livestreamed events on campus</li>
+                                <li>Developed advertisements to promote services off campus</li>
+                            </ul>
+                            <div class="first-line flex space-between">
+                                <h3>Western Nebraska Pioneers Baseball</h3>
+                                <p>July 2020-August 2020</p>
+                            </div>    
+                            <p><em>Promotions Intern, Head of Media Outreach</em></p>
+                            <ul>
+                                <li>Created promotional videos to introduce new players to the community</li>
+                                <li>Engaged with local business owners to sell ticket packages</li>
+                                <li>Baseball operations duties (coordinating player meals, stadium upkeep, etc.)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-me-section skills flex border-white">
+                    <div id="skills" class="scroll-to"></div>
+                    <div class="about-me-square skills-square border-white">
+                        <img src="images/cursor.png" alt="a computer cursor.">
+                    </div>
+                    <div class="about-me-body skills-body">
+                        <h1>Skills</h1>
+                        <div class="flex space-between">
+                            <div class="margin-top">
+                                <h3>Computer Applications</h3>
+                                <ul>
+                                    <li>Microsoft 365</li>
+                                    <li>Adobe Premiere Pro</li>
+                                    <li>Adobe Photoshop</li>
+                                </ul>
+                            </div>
+                            <div class="margin-top">
+                                <h3>Programming Languages</h3>
+                                <ul>
+                                    <li>HTML & CSS</li>
+                                    <li>JavaScript</li>
+                                    <li>Python</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-me-section github2 flex border-white">
+                    <div id="github" class="scroll-to"></div>
+                    <div class="about-me-square github-square border-white">
+                        <img src="images/github.png" alt="the github logo, a cat's silhouette.">
+                    </div>
+                    <div class="about-me-body github-body">
+                        <h1>GitHub</h1>
+                        <h3><a onmouseover="highlightLink(this)" onmouseout="undoHighlightLink(this)" class="about-me-links" href="https://github.com/calebmcdonald44">My GitHub</a></h3>
+                    </div>
+                </div>
+                <div class="about-me-section contact-me flex border-white">
+                    <div id="contact-me" class="scroll-to"></div>
+                    <div class="about-me-square contact-me-square border-white">
+                        <img src="images/mail.png" alt="an envelope.">
+                    </div>
+                    <div class="about-me-body contact-me-body">
+                        <h1>Contact Me</h1>
+                        <div class="flex-column space-around contact-me-something">
+                            <div class="flex space-between">
+                                <h3>Phone Number:</h3>
+                                <h3>(913) 378-7000</h3>
+                            </div>
+                            <div class="flex space-between">
+                                <h3>Email Address:</h3>
+                                <h3><a onmouseover="highlightLink(this)" onmouseout="undoHighlightLink(this)" class="about-me-links" id="mailto" href="mailto:caleb.scott.mcdonald@gmail.com" target="_blank">caleb.scott.mcdonald@gmail.com</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="about-me.js"></script>
+</body>
+</html>

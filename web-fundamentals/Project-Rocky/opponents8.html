@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocky Ranked</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+    <div class="banner flex space-around">
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickHome()" class="inactive">HOME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickAboutMe()" class="inactive" >ABOUT ME</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickMovies()" class="inactive">MOVIES</button>
+        <button onmouseover="buttonHover(this)" onmouseout="buttonLeave(this)" onclick="clickOpponents()" class="active">OPPONENTS</button>
+    </div>
+    <div class="flex center">
+        <div class="content flex-column">
+            <div class="double-border">
+                <div class="opponent-ring flex-column border">
+                    <div class="name-and-quote">
+                        <h1>Tommy Gunn</h1>
+                        <p>"Yeah, I'm tired of walking in your shadow, man! I'm tired of people callin' me a robot!"</p>
+                    </div>
+                    <div class="stat-card flex border-white">
+                        <img src="images/Tommy-gunn.png" alt="Tommy Gunn grimacing as he delivers a knockout blow.">
+                        <div class="stats flex-column space-between">
+                            <div class="stat-row power space-between flex">
+                                <p class="attribute">POWER:</p>
+                                <div class="slider flex">
+                                    <div id="slider-power" class="slider-color"></div>
+                                    <div id="knob-power" class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row stamina space-between flex">
+                                <p class="attribute">STAMINA:</p>
+                                <div class="slider flex">
+                                    <div id="slider-stamina" class="slider-color"></div>
+                                    <div id="knob-stamina" class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row agility space-between flex">
+                                <p class="attribute">AGILITY:</p>
+                                <div class="slider flex">
+                                    <div id="slider-agility" class="slider-color"></div>
+                                    <div id="knob-agility" class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row chin space-between flex">
+                                <p class="attribute">CHIN:</p>
+                                <div class="slider flex">
+                                    <div id="slider-chin" class="slider-color"></div>
+                                    <div id="knob-chin" class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row strategy space-between flex">
+                                <p class="attribute">STRATEGY:</p>
+                                <div class="slider flex">
+                                    <div id="slider-strategy" class="slider-color"></div>
+                                    <div id="knob-strategy" class="slider-knob"></div>
+                                </div>
+                            </div>
+                            <div class="stat-row intimidation space-between flex">
+                                <p class="attribute">INTIMIDATION:</p>
+                                <div class="slider flex">
+                                    <div id="slider-intimidation" class="slider-color"></div>
+                                    <div id="knob-intimidation" class="slider-knob"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="opponents-sections flex center border-white">
+                <div class="opponents-rank">
+                    <h1 class="rank-shadow">8</h1>
+                    <h1>8</h1>
+                </div>
+                <div class="opponents-content">
+                    <h1>The Fighter</h1>
+                    <p>
+                        Tommy Gunn's career is hard to rank. We only see the beginning of it, and mostly through montages where he's knocking out lesser fighters. What we do know is this- he never went the distance in a fight, and he lost to a brain-damaged, out-of-shape Rocky who was actively suffering from PTSD flashbacks during the fight. Considering that and his easily exploitable temper, you can't really justify putting him any higher.
+                    </p>
+                </div>
+            </div>
+            <div class="opponents-sections flex center border-white">
+                <div class="opponents-content-middle">
+                    <h1>The Character</h1>
+                    <p>
+                        Tommy functions more as a bizarro-world version of a young Rocky than a fully rounded character of his own. He's Rocky with too much pride, and the entire film he's either following i
+                    </p>
+                </div>
+                <div class="opponents-rank">
+                    <h1 class="rank-shadow">7</h1>
+                    <h1>7</h1>
+                </div>
+            </div>
+            <div class="buttons flex">
+                <button onmouseover="buttonHover2(this)" onmouseout="buttonLeave2(this)" onclick="clickHome()">Home</button>
+                <button class="arrow-right" onmouseover="buttonHover2(this)" onmouseout="buttonLeave2(this)" onclick="nextPage()"><img id="arrow-right" src="images/arrow-right-white.png" alt="an arrow pointing right"></button>
+            </div>
+        </div>
+    </div>
+    <script src="opponents8.js"></script>
+</body>
+</html>

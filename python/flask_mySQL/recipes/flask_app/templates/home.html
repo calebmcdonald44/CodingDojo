@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/home.css') }}">
+</head>
+<body>
+    <div class="nav-bar space-between">
+        <h1>Recipe Share</h1>
+        <div class="nav-items flex">
+            <a href="">Link</a>
+            <a href="">Link</a>
+            <a href="">Link</a>
+        </div>
+    </div>
+    <div class="fake-body">
+        <div class="flex gap">
+            <div class="register flex-column">
+                <h1>Register</h1>
+                    {% for message in get_flashed_messages(category_filter=['register']) %}
+                        <p class="red">{{message}}</p>
+                    {% endfor %}
+                <form action="/register_user" method="POST">
+                    <div class="flex-column gap">
+                        <div class="duo space-between">
+                            <label for="first_name">First Name:</label>
+                            <input type="text" name="first_name" id="">
+                        </div>
+                        <div class="duo space-between">
+                            <label for="last_name">Last Name:</label>
+                            <input type="text" name="last_name" id="">
+                        </div>
+                        <div class="duo space-between">
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" id="">
+                        </div>
+                        <div class="duo space-between">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="">
+                        </div>
+                        <div class="duo space-between">
+                            <label for="confirm_password">Confirm Password:</label>
+                            <input type="password" name="confirm_password" id="">
+                        </div>
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+            <div class="login flex-column">
+                <h1>Login</h1>
+                {% for message in get_flashed_messages(category_filter=['login']) %}
+                    <p class="red">{{message}}</p>
+                {% endfor %}
+                <form action="/login_user", method="POST">
+                    <div class="flex-column gap">
+                        <div class="duo space-between">
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" id="">
+                        </div>
+                        <div class="duo space-between">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="">
+                        </div>
+                    </div>
+                    <button class="login-button" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

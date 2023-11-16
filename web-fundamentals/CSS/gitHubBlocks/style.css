@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    border: 0;
+}
+
+body {
+    background-color: rgb(241, 241, 241);
+}
+
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+img {
+    height: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div{
+    height: 220px;
+    width: 780px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    height: 100px;
+}
+
+.yellow {
+    background-color: rgb(255, 255, 143);
+    justify-content: space-between;
+}
+
+.blue {
+    background-color: rgb(149, 214, 255);
+    justify-content: space-evenly;
+}
+
+.pink {
+    background-color: pink;
+    justify-content: space-between;
+}
