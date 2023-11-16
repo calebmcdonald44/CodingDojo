@@ -36,7 +36,7 @@ function sumToOneDigit(num) {
     let ones = num % 10
     num = Math.floor(num/10)
 
-    result = ones + sumToOneDigit(num)
+    let result = ones + sumToOneDigit(num)
     while(result > 9) {
         result = sumToOneDigit(result)
     }
