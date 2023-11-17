@@ -48,7 +48,7 @@ body {
 .nav-bar > h1 {
     min-width: 400px;
 }
-span {
+.green1 {
     color: #779556;
 }
 .content {
@@ -65,7 +65,7 @@ span {
 /* PAGE TAGS */
 table {
     border-collapse: collapse;
-    margin: 100px auto;
+    margin: 25px auto;
     height: fit-content;
     width: fit-content;
 }
@@ -82,6 +82,19 @@ td {
 }
 .green {
     background-color: #779556;
+}
+.blue {
+    background-color: #4d74ad;
+}
+.red {
+    background-color: #ac5046;
+}
+.timer {
+
+    font-size: 50px;
+    font-weight: 700;
+    color: white;
+    margin: 50px auto 0 auto;
 }
 button {
     width: fit-content;

@@ -9,6 +9,36 @@ const options = {
 	}
 };
 
+// SETTING UP TIMER
+var seconds = 0;
+function setTime() {
+	var time = document.getElementById("time")
+	seconds = Number(time.value) * 60
+}
+const delay = ms => new Promise(res => setTimeout(res, ms));
+async function countdown() {
+	await delay(200)
+	function tick() {
+		var counter = document.getElementById("counter");
+		var minutes = Math.floor(seconds/60)
+		var minute_seconds = seconds % 60
+		seconds--;
+		if (seconds > 59) {
+			counter.innerHTML = `${minutes}:` + (minute_seconds < 10 ? "0" : "") + String(minute_seconds);
+		}
+		else {
+			counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+		}
+		if (seconds > 0) {
+			setTimeout(tick, 1000);
+		} else {
+		document.getElementById("counter").innerHTML = "TIMES UP!";
+		}
+	}
+	tick();
+}
+countdown();
+
 // GETTING RANDOM PUZZLE AND CONSTRUCTING BOARD
 var solution = null
 var puzzle_info = null
@@ -128,22 +158,24 @@ function convertPuzzle(data) {
 
 function currentBoard(data) {
 	let chess_board = "";
+	let color = document.getElementById("board_color").value
+	console.log(color)
 	for(let i = 0, j = 7; i < 8; i++, j--) {
 		if(data["active_color"] == "w") {
 			// give each square an id name of it's position on the board
 			if(i % 2 == 0) {
-				chess_board += `<tr><td onclick="movePiece(this)" id="${i}0"><img src="static//css/images/${data['chess_board'][i][0]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}1" class="green"><img src="static//css/images/${data['chess_board'][i][1]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}2"><img src="static//css/images/${data['chess_board'][i][2]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}3" class="green"><img src="static//css/images/${data['chess_board'][i][3]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}4"><img src="static//css/images/${data['chess_board'][i][4]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}5" class="green"><img src="static//css/images/${data['chess_board'][i][5]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}6"><img src="static//css/images/${data['chess_board'][i][6]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}7" class="green"><img src="static//css/images/${data['chess_board'][i][7]}.png" alt=""></td></tr>`;
+				chess_board += `<tr><td onclick="movePiece(this)" id="${i}0"><img src="static//css/images/${data['chess_board'][i][0]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}1" class="${color}"><img src="static//css/images/${data['chess_board'][i][1]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}2"><img src="static//css/images/${data['chess_board'][i][2]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}3" class="${color}"><img src="static//css/images/${data['chess_board'][i][3]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}4"><img src="static//css/images/${data['chess_board'][i][4]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}5" class="${color}"><img src="static//css/images/${data['chess_board'][i][5]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}6"><img src="static//css/images/${data['chess_board'][i][6]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}7" class="${color}"><img src="static//css/images/${data['chess_board'][i][7]}.png" alt=""></td></tr>`;
 			}
 			else {
-				chess_board += `<tr><td onclick="movePiece(this)" id="${i}0" class="green"><img src="static//css/images/${data['chess_board'][i][0]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}1"><img src="static//css/images/${data['chess_board'][i][1]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}2" class="green"><img src="static//css/images/${data['chess_board'][i][2]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}3"><img src="static//css/images/${data['chess_board'][i][3]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}4" class="green"><img src="static//css/images/${data['chess_board'][i][4]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}5"><img src="static//css/images/${data['chess_board'][i][5]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}6" class="green"><img src="static//css/images/${data['chess_board'][i][6]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}7"><img src="static//css/images/${data['chess_board'][i][7]}.png" alt=""></td></tr>`;
+				chess_board += `<tr><td onclick="movePiece(this)" id="${i}0" class="${color}"><img src="static//css/images/${data['chess_board'][i][0]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}1"><img src="static//css/images/${data['chess_board'][i][1]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}2" class="${color}"><img src="static//css/images/${data['chess_board'][i][2]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}3"><img src="static//css/images/${data['chess_board'][i][3]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}4" class="${color}"><img src="static//css/images/${data['chess_board'][i][4]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}5"><img src="static//css/images/${data['chess_board'][i][5]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}6" class="${color}"><img src="static//css/images/${data['chess_board'][i][6]}.png" alt=""></td><td onclick="movePiece(this)" id="${i}7"><img src="static//css/images/${data['chess_board'][i][7]}.png" alt=""></td></tr>`;
 			}
 		}
 		else {
 			if(i % 2 == 0) {
-				chess_board += `<tr><td onclick="movePiece(this)" id="${j}7"><img src="static//css/images/${data['chess_board'][j][7]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}6" class="green"><img src="static//css/images/${data['chess_board'][j][6]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}5"><img src="static//css/images/${data['chess_board'][j][5]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}4" class="green"><img src="static//css/images/${data['chess_board'][j][4]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}3"><img src="static//css/images/${data['chess_board'][j][3]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}2" class="green"><img src="static//css/images/${data['chess_board'][j][2]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}1"><img src="static//css/images/${data['chess_board'][j][1]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}0" class="green"><img src="static//css/images/${data['chess_board'][j][0]}.png" alt=""></td></tr>`;
+				chess_board += `<tr><td onclick="movePiece(this)" id="${j}7"><img src="static//css/images/${data['chess_board'][j][7]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}6" class="${color}"><img src="static//css/images/${data['chess_board'][j][6]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}5"><img src="static//css/images/${data['chess_board'][j][5]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}4" class="${color}"><img src="static//css/images/${data['chess_board'][j][4]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}3"><img src="static//css/images/${data['chess_board'][j][3]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}2" class="${color}"><img src="static//css/images/${data['chess_board'][j][2]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}1"><img src="static//css/images/${data['chess_board'][j][1]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}0" class="${color}"><img src="static//css/images/${data['chess_board'][j][0]}.png" alt=""></td></tr>`;
 			}
 			else {
-				chess_board += `<tr><td onclick="movePiece(this)" id="${j}7" class="green"><img src="static//css/images/${data['chess_board'][j][7]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}6"><img src="static//css/images/${data['chess_board'][j][6]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}5" class="green"><img src="static//css/images/${data['chess_board'][j][5]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}4"><img src="static//css/images/${data['chess_board'][j][4]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}3" class="green"><img src="static//css/images/${data['chess_board'][j][3]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}2"><img src="static//css/images/${data['chess_board'][j][2]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}1" class="green"><img src="static//css/images/${data['chess_board'][j][1]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}0"><img src="static//css/images/${data['chess_board'][j][0]}.png" alt=""></td></tr>`;
+				chess_board += `<tr><td onclick="movePiece(this)" id="${j}7" class="${color}"><img src="static//css/images/${data['chess_board'][j][7]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}6"><img src="static//css/images/${data['chess_board'][j][6]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}5" class="${color}"><img src="static//css/images/${data['chess_board'][j][5]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}4"><img src="static//css/images/${data['chess_board'][j][4]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}3" class="${color}"><img src="static//css/images/${data['chess_board'][j][3]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}2"><img src="static//css/images/${data['chess_board'][j][2]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}1" class="${color}"><img src="static//css/images/${data['chess_board'][j][1]}.png" alt=""></td><td onclick="movePiece(this)" id="${j}0"><img src="static//css/images/${data['chess_board'][j][0]}.png" alt=""></td></tr>`;
 			}
 		}
 	}
@@ -169,24 +201,6 @@ console.log(puzzle_info)
 
 currentBoard(puzzle_info)
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// SETTING VARIABLES EQUAL TO SQUARE'S INNER HTML FOR CONVENIENCE 
-
-// const blank = '<img src="static//css/images/--.png" alt="">'
-// const bP = '<img src="static//css/images/bP.png" alt="">'
-// const bR = '<img src="static//css/images/bR.png" alt="">'
-// const bN = '<img src="static//css/images/bN.png" alt="">'
-// const bB = '<img src="static//css/images/bB.png" alt="">'
-// const bK = '<img src="static//css/images/bK.png" alt="">'
-// const bQ = '<img src="static//css/images/bQ.png" alt="">'
-// const wP = '<img src="static//css/images/wP.png" alt="">'
-// const wR = '<img src="static//css/images/wR.png" alt="">'
-// const wN = '<img src="static//css/images/wN.png" alt="">'
-// const wB = '<img src="static//css/images/wB.png" alt="">'
-// const wK = '<img src="static//css/images/wK.png" alt="">'
-// const wQ = '<img src="static//css/images/wQ.png" alt="">'
-
-
 
 var click_count = 0
 var start_sq = ""

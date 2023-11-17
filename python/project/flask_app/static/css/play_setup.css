@@ -102,6 +102,15 @@ td {
 .red {
     background-color: #ac5046;
 }
+#green {
+    border: transparent solid 3px;
+}
+#blue {
+    border: transparent solid 3px;
+}
+#red {
+    border: transparent solid 3px;
+}
 select {
     margin: 20px 0;
     height: 50px;

@@ -6,9 +6,9 @@ from flask import jsonify
 @app.route("/attempt_info", methods=['POST'])
 def attempt_info():
 
-    # session['board_color'] = request.form['board_color']
     session['time'] = request.form['time']
     session['difficulty'] = request.form['difficulty']
+    session['board_color'] = request.form['board_color']
 
     return redirect("/attempt_active")
 
@@ -18,5 +18,6 @@ def attempt_active():
     if not 'username' in session:
         return redirect("/")
     
+
     return render_template("attempt_active.html")
 

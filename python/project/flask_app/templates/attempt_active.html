@@ -6,9 +6,9 @@
         <title>Document</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='/css/attempt_active.css') }}">
     </head>
-    <body>    
+    <body onload="setTime()">    
         <div class="nav-bar space-between">
-            <h1>Puzzle<span>Ladder</span></h1>
+            <h1>Puzzle<span class="green1">Ladder</span></h1>
             <div class="nav-items flex">
                 <a href="/play_setup/{{session['username']}}">Play</a>
                 <a href="">Leaderboards</a>
@@ -18,6 +18,17 @@
         <div class="content flex-column">
             <!-- <h1>{{session['time']}}</h1>
             <h1>{{session['difficulty']}}</h1> -->
+            <input type="hidden" name="time" id="time" value="{{session['time']}}">
+            <input type="hidden" name="difficulty" id="difficulty" value="{{session['difficulty']}}">
+            <input type="hidden" name="difficulty" id="board_color" value="{{session['board_color']}}">
+
+            
+
+            <span class="timer">
+                <span id="counter"></span>
+            </span>
+            
+
             <table id="board"></table>
             <button onclick="getPuzzle()">Random Chess Puzzle</button>
         </div>
