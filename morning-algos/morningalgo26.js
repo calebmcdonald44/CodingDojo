@@ -8,6 +8,7 @@
 // continue until array is fully sorted
 
 let testArr = [78, 5, 678, 765, 456, 78, 265, 908];
+let testArr2 = [1, 1, 1, 1, 1, 1] 
 
 function bubbleSort(arr) {
     let swapped = false
@@ -25,7 +26,8 @@ function bubbleSort(arr) {
     return arr;
 }
 
-console.log(bubbleSort(testArr))
+console.log(bubbleSort(testArr1))
+console.log(bubbleSort(testArr2))
 
 
 // Time Complexity
