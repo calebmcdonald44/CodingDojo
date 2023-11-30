@@ -45,11 +45,15 @@ form {
   width: 400px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 form > div {
   display: flex;
   justify-content: space-between;
+  margin: 3px 10px;
+}
+.errorText {
+  margin: 0 0 20px 0;
+  color: red;
 }
 .formInfo > div {
   display: flex;
