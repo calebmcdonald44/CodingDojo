@@ -44,17 +44,17 @@ const Display = (props) => {
             </>
         )
     }
-    else if(category === 'vehicles') {
-        return (!data ? <h1>Retrieving...</h1> :
-        <>
-            <h1>{data.name}</h1>
-            <h3>Height: {data.height}</h3>
-            <h3>Mass: {data.mass}</h3>
-            <h3>Birth Year: {data.birth_year}</h3>
-            <h3>Gender: {data.gender}</h3>
-        </>
-    )
-    }
+    // else if(category === 'vehicles') {
+    //     return (!data ? <h1>Retrieving...</h1> :
+    //     <>
+    //         <h1>{data.name}</h1>
+    //         <h3>Height: {data.height}</h3>
+    //         <h3>Mass: {data.mass}</h3>
+    //         <h3>Birth Year: {data.birth_year}</h3>
+    //         <h3>Gender: {data.gender}</h3>
+    //     </>
+    // )
+    // }
     else if(category === 'people') {
         return (!data ? <h1>Retrieving...</h1> :
             <>

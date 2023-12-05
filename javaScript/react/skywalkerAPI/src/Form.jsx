@@ -22,7 +22,7 @@ const Form = (props) => {
                 <option value="test" disabled>Please Select a Category</option>
                 <option value="planets">Planets</option>
                 <option value="starships">Starships</option>
-                <option value="vehicles">Vehicles</option>
+                {/* <option value="vehicles">Vehicles</option> */}
                 <option value="people">People</option>
                 <option value="films">Films</option>
                 <option value="species">Species</option>
