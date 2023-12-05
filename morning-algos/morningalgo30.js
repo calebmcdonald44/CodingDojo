@@ -52,19 +52,23 @@ console.log(findConsqSums(arr, k))
 // Input: nums = [1,2,3]
 // Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 
-function allPermutations(arr) {
+function allPermutations(arr, arr2=[]) {
     const resultArr = []
+    resultArr.push(arr.concat(arr2))
     for(let i = 0; i < arr.length; i++) {
         const newArr = [arr[i]]
         const remainArr = arr.slice(0, i).concat(arr.slice(i+1))
-        const permutations = allPermutations(remainArr)
-        console.log('permutations: ', permutations);
-        for(let j = 0; j < permutations.length; j++) {
-            console.log("loop activating")
-            resultArr.push(newArr.concat(permutations[j]))
-        }
+        testArr = allPermutations(remainArr, newArr)
+        for(let j = 0; j < testArr.length; j++)
+            resultArr.push(testArr[j])
+        // const permutations = allPermutations(remainArr)
+        // for(let j = 0; j < permutations.length; j++) {
+        //     console.log("loop activating")
+        //     resultArr.push(newArr.concat(permutations[j]))
+        // }
     }
     return resultArr
 }
+
 
 console.log(allPermutations([1,2,3]))
