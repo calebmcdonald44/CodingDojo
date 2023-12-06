@@ -1,0 +1,5 @@
+node_modules
+package-lock.json
+*.log
+*.gz
+Screenshot 2023-12-06 at 4.04.03 PM.png
