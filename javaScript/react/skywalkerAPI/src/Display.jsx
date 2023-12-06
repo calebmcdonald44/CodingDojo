@@ -14,7 +14,6 @@ const Display = (props) => {
                 setData(response.data)
             }).catch(err => {
                 console.log(err)
-                setData('error')
             })
         }
 
