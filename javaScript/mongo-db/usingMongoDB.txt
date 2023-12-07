@@ -1,0 +1,122 @@
+Didn't complete because I got the gist and it sounds like Mongoose makes this section somewhat irrelevant
+
+
+Atlas atlas-tlmsr6-shard-0 [primary] TESTDB> use my_first_db
+switched to db my_first_db
+
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> db.createCollection('students')
+{ ok: 1 }
+
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> db.students.insertOne({name: "Johnny", home_state: "Kansas", lucky_number: 44, birthday: {month: 12, day: 25, year: 1998}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('657215e5cc36acb2b284499d')
+}
+
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> db.students.insertOne({name: "Mac", home_state: "Missouri", lucky_number: 8, birthday: {month: 11, day: 5, year: 2000}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65721631cc36acb2b284499e')
+}
+
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> db.students.insertOne({name: "Sherri", home_state: "Delaware", lucky_number: 4, birthday: {month:12, day: 5, year: 1999}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6572165ecc36acb2b284499f')
+}
+
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> db.students.insertOne({name: "Cindy", home_state: "Texas", lucky_number: 66, birthday: {month: 6, day: 6, year: 2005}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65721684cc36acb2b28449a0')
+}
+
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> db.students.insertOne({name: "Quinn", home_state: "Rhode Island", lucky_number: 76, birthday: {month: 10, day: 7, year: 1992}})
+{
+  acknowledged: true,
+  insertedId: ObjectId('657216aecc36acb2b28449a1')
+
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> db.students.find()
+[
+  {
+    _id: ObjectId('657215e5cc36acb2b284499d'),
+    name: 'Johnny',
+    home_state: 'Kansas',
+    lucky_number: 44,
+    birthday: { month: 12, day: 25, year: 1998 }
+  },
+  {
+    _id: ObjectId('65721631cc36acb2b284499e'),
+    name: 'Mac',
+    home_state: 'Missouri',
+    lucky_number: 8,
+    birthday: { month: 11, day: 5, year: 2000 }
+  },
+  {
+    _id: ObjectId('6572165ecc36acb2b284499f'),
+    name: 'Sherri',
+    home_state: 'Delaware',
+    lucky_number: 4,
+    birthday: { month: 12, day: 5, year: 1999 }
+  },
+  {
+    _id: ObjectId('65721684cc36acb2b28449a0'),
+    name: 'Cindy',
+    home_state: 'Texas',
+    lucky_number: 66,
+    birthday: { month: 6, day: 6, year: 2005 }
+  },
+  {
+    _id: ObjectId('657216aecc36acb2b28449a1'),
+    name: 'Quinn',
+    home_state: 'Rhode Island',
+    lucky_number: 76,
+    birthday: { month: 10, day: 7, year: 1992 }
+  }
+]
+
+}
+
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> db.students.find({ $or: [{state: "California"}, {state: "Washington"}]})
+
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> db.students.find({lucky_number: {$gt: 3}})
+[
+  {
+    _id: ObjectId('657215e5cc36acb2b284499d'),
+    name: 'Johnny',
+    home_state: 'Kansas',
+    lucky_number: 44,
+    birthday: { month: 12, day: 25, year: 1998 }
+  },
+  {
+    _id: ObjectId('65721631cc36acb2b284499e'),
+    name: 'Mac',
+    home_state: 'Missouri',
+    lucky_number: 8,
+    birthday: { month: 11, day: 5, year: 2000 }
+  },
+  {
+    _id: ObjectId('6572165ecc36acb2b284499f'),
+    name: 'Sherri',
+    home_state: 'Delaware',
+    lucky_number: 4,
+    birthday: { month: 12, day: 5, year: 1999 }
+  },
+  {
+    _id: ObjectId('65721684cc36acb2b28449a0'),
+    name: 'Cindy',
+    home_state: 'Texas',
+    lucky_number: 66,
+    birthday: { month: 6, day: 6, year: 2005 }
+  },
+  {
+    _id: ObjectId('657216aecc36acb2b28449a1'),
+    name: 'Quinn',
+    home_state: 'Rhode Island',
+    lucky_number: 76,
+    birthday: { month: 10, day: 7, year: 1992 }
+  }
+]
+Atlas atlas-tlmsr6-shard-0 [primary] my_first_db> 
+
+
