@@ -31,33 +31,3 @@ function missingNum(arr) {
 }
 
 console.log(missingNum([5, 2, 7, 8, 4, 9, 3, 0, 1]))
-
-// #2 Min of Sorted-Rotated
-
-// You are given an an array of integers with a length of up to 255 thousand.
-// This array has first been sorted, then rotated by an unknown amount.
-
-// Find and return the minimum value.
-
-// Ninja Goal: Do this faster than 0(n) ie: find your answer without visiting every single element
-// (think binary search)
-
-// given [13, 17, 18, 3, 5, 6, 8, 9, 10]
-// return 3
-
-function minSortRotated(arr) {
-    let left = 0
-    let right = arr.length - 1
-    while(arr[left] < arr[right]) {
-        mid = Math.floor((left+right)/2)
-        console.log ("LEFT MID RIGHT- ", left, mid, right)
-        if(arr[mid > arr[right]]) {
-            left = mid + 1
-        }
-        else {
-            right = mid
-        }
-    }
-    return arr[left]
-}
-console.log(minSortRotated([13, 17, 18, 3, 5, 6, 8, 9, 10]))
