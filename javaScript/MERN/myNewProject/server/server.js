@@ -6,6 +6,6 @@ const port = process.env.PORT;
 require('./config/mongoose.config')
 app.use(cors())
 app.use(express.json())
-app.use(expresss.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}))
 require('./routes/person.routes')(app);
 app.listen(port, () => console.log(`Listening on port: ${port}`) );

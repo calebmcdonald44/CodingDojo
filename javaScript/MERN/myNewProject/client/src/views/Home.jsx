@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import {
+    Routes,
+    Route,
+    Link
+} from "react-router-dom";
+import PersonForm from "../components/PersonForm.jsx"
 export default () => {
     const [ message, setMessage ] = useState("Loading...")
     useEffect(()=>{
@@ -9,7 +15,7 @@ export default () => {
     }, []);
     return (
         <div>
-            <h2>Message from the backend: {message}</h2>
+            <PersonForm></PersonForm>
         </div>
     )
 }
