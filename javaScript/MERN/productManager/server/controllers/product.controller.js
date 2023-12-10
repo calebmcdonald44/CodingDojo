@@ -13,6 +13,11 @@ module.exports.findAllProducts = (request, response) => {
             response.json(err)
         })
 }
+module.exports.findOneProduct = (request, response) => {
+    Product.findOne({_id:request.params.id})
+    .then(product => response.json(product))
+    .catch(err => response.json(err))
+}
 module.exports.createProduct = (request, response) => {
     const { title, price, description } = request.body;
     Product.create({
