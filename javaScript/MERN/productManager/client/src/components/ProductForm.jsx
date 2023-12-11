@@ -15,7 +15,12 @@ export default () => {
             price,
             description
         })
-            .then(res=>console.log(res))
+            .then(res=>{
+                console.log(res)
+                setTitle("")
+                setPrice("")
+                setDescription("")
+            })
             .catch(err=>console.log(err))
     }
     //onChange to update firstName and lastName

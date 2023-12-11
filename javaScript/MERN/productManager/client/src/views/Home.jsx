@@ -13,13 +13,18 @@ const Home = (props) => {
                 setLoaded(true)
             })
             .catch(err=>{console.log("There was an error: ", err)})       
-    }, []);
+    }, [products]);
+
+    const removeFromDom = productId => {
+        setProducts(products.filter(product => product._id != productId));
+    }
+
     return (
         <div>
             <h1>Product Manager</h1>
             <ProductForm></ProductForm>
             <hr />
-            {loaded && <ProductList products={products}></ProductList>}
+            {loaded && <ProductList products={products} removeFromDom={removeFromDom} ></ProductList>}
         </div>
     )
 }
