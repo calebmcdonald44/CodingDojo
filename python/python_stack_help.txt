@@ -7,3 +7,12 @@ terminal instructions for new server.py file
 
 Link css (or js) to html while using python through flask
 {{ url_for('static', filename='/css/style.css') }}
+
+
+
+
+Create Django Environment- 
+python3 -m venv djangoPy3Env
+
+Activate Django Environment-
+source djangoPy3Env/bin/activate
