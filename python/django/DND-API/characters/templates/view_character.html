@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D20 Heroes | View Character</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">D&D Character Creator</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <h1>View Character</h1>
+        <section>
+            <div class="card">
+                <div class="card-body">
+                    {% if character %}
+                        <h2 class="card-title">{{ character.name }}</h2>
+                        <p><strong>Class:</strong> {{ character.char_class }}</p>
+                        <p><strong>Level:</strong> {{ character.level }}</p>
+                        <p><strong>EXP:</strong> {{ character.exp }}</p>
+                        <p><strong>STR:</strong> {{ character.str_stat }}</p>
+                        <p><strong>DEX:</strong> {{ character.dex_stat }}</p>
+                        <p><strong>CON:</strong> {{ character.con_stat }}</p>
+                        <p><strong>INT:</strong> {{ character.int_stat }}</p>
+                        <p><strong>WIS:</strong> {{ character.wis_stat }}</p>
+                        <p><strong>CHA:</strong> {{ character.cha_stat }}</p>
+                        <p><strong>Background:</strong> {{ character.background }}</p>
+                    {% else %}
+                        <p>Character data not found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

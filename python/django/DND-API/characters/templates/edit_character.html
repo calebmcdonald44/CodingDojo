@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Character</title>
+    <title>D20 Heroes | Update Character</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -14,7 +14,7 @@
             <a class="navbar-brand" href="#">D&D Character Creator</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
                 </ul>
@@ -24,54 +24,54 @@
 
     <main class="container mt-5">
         <!-- Page Title -->
-        <h1>Create Character</h1>
+        <h1>Update Character</h1>
 
-        <!-- Character Creation Instruction -->
-        <p>Enter information and stats for your character below:</p>
+        <!-- Character Update Instruction -->
+        <p>Update information and stats for your character below:</p>
 
         <!-- Character Info Form -->
         <section>
-            <form id="CharacterInfo" action="/characters/created/" method="post">
+            <form id="CharacterInfo" action="{% url 'update_character' char_id=character.id %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Character Name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Character Name" value="{{ character.name }}">
                 </div>
 
                 <div class="form-group">
                     <label for="charClass">Class:</label>
-                    <input type="text" class="form-control" id="charClass" name="char_class" placeholder="Character Class">
+                    <input type="text" class="form-control" id="charClass" name="char_class" placeholder="Character Class" value="{{ character.char_class }}">
                 </div>
 
                 <div class="form-group">
                     <label for="level">Level:</label>
-                    <input type="number" class="form-control" id="level" name="level" placeholder="Level">
+                    <input type="number" class="form-control" id="level" name="level" placeholder="Level" value="{{ character.level }}">
                 </div>
 
                 <div class="form-group">
                     <label for="exp">EXP:</label>
-                    <input type="number" class="form-control" id="exp" name="exp" placeholder="Experience Points">
+                    <input type="number" class="form-control" id="exp" name="exp" placeholder="Experience Points" value="{{ character.exp }}">
                 </div>
 
                 <!-- Base Stats -->
                 <fieldset class="form-group">
                     <legend>Base Stats</legend>
                     <div class="row">
-                        <div class="col"><input type="number" class="form-control" name="str_stat" placeholder="STR"></div>
-                        <div class="col"><input type="number" class="form-control" name="dex_stat" placeholder="DEX"></div>
-                        <div class="col"><input type="number" class="form-control" name="con_stat" placeholder="CON"></div>
-                        <div class="col"><input type="number" class="form-control" name="int_stat" placeholder="INT"></div>
-                        <div class="col"><input type="number" class="form-control" name="wis_stat" placeholder="WIS"></div>
-                        <div class="col"><input type="number" class="form-control" name="cha_stat" placeholder="CHA"></div>
+                        <div class="col"><input type="number" class="form-control" name="str_stat" placeholder="STR" value="{{ character.str_stat }}"></div>
+                        <div class="col"><input type="number" class="form-control" name="dex_stat" placeholder="DEX" value="{{ character.dex_stat }}"></div>
+                        <div class="col"><input type="number" class="form-control" name="con_stat" placeholder="CON" value="{{ character.con_stat }}"></div>
+                        <div class="col"><input type="number" class="form-control" name="int_stat" placeholder="INT" value="{{ character.int_stat }}"></div>
+                        <div class="col"><input type="number" class="form-control" name="wis_stat" placeholder="WIS" value="{{ character.wis_stat }}"></div>
+                        <div class="col"><input type="number" class="form-control" name="cha_stat" placeholder="CHA" value="{{ character.cha_stat }}"></div>
                     </div>
                 </fieldset>
 
                 <div class="form-group">
                     <label for="background">Character Background:</label>
-                    <textarea class="form-control" id="background" name="background" rows="3"></textarea>
+                    <textarea class="form-control" id="background" name="background" rows="3">{{ character.background }}</textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Create Character</button>
+                <button type="submit" class="btn btn-primary">Update Character</button>
             </form>
         </section>
     </main>

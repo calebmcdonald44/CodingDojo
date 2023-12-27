@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D20 Heroes Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><h2>D20 Heroes</h2></a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-3">
+                    <a class="btn btn-primary" href="/characters/create">Create Character</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="btn btn-secondary" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-danger" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Character Name</th>
+                    <th scope="col">Creator</th>
+                    <th scope="col">Info</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- First Sample Row -->
+                <tr>
+                    <td><a href="#linkToCharacterPage1">Sample Character 1</a></td>
+                    <td>John Doe</td>
+                    <td>Under Construction</td>
+                    <td>
+                        <a href="#editCharacter1">Edit</a> | 
+                        <a href="#deleteCharacter1">Delete</a>
+                    </td>
+                </tr>
+                <!-- Second Sample Row -->
+                <tr>
+                    <td><a href="#linkToCharacterPage2">Sample Character 2</a></td>
+                    <td>Jane Smith</td>
+                    <td>Under Construction</td>
+                    <td>
+                        <a href="#editCharacter2">Edit</a> | 
+                        <a href="#deleteCharacter2">Delete</a>
+                    </td>
+                </tr>
+                <!-- Additional rows would go here -->
+                {% for character in all_the_characters %}
+                <tr>
+                    <td><a href="{% url 'view_character' char_id=character.id %}">{{character.name}}</a></td>
+                    <td>Creator goes here</td>
+                    <td>Under Construction</td>
+                    <td>
+                        <a href="{% url 'edit_character' char_id=character.id %}">Edit</a> | 
+                        <a href="{% url 'delete_character' char_id=character.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
