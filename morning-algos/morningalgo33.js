@@ -47,39 +47,49 @@ console.log(diagonalDifference(squareMatrix2))
 
 
 // Example 1:
-
-// Input: nums = [1,1,1,2,2,3], k = 2
+let nums1 = [1,1,1,2,2,3]
+let k1 = 2
 // Output: [1,2]
-// Example 2:
 
-// Input: nums = [1], k = 1
+// Example 2:
+let nums2 = [1]
+let k2 = 1
 // Output: [1]
 
-// const mostFrequent = (arr, k) => {
-//     let freqTable = {}
-//     for(let i = 0; i < arr.length; i++) {
-//         if(!freqTable[arr[i]]) {
-//             freqTable[arr[i]] = 0
-//         }
-//         freqTable[arr[i]] += 1
-//     }
+const mostFrequent = (arr, k) => {
+    let freqTable = {}
+    for(let i = 0; i < arr.length; i++) {
+        if(!freqTable[arr[i]]) {
+            freqTable[arr[i]] = 0
+        }
+        freqTable[arr[i]] += 1
+    }
+    console.log(freqTable)
 
-//     find(Object.entries(freqTable), k)
-//     return freqTable
-// }
+    find(Object.entries(freqTable), k)
+    return freqTable
+}
 
-// const find = (arr, k) => {
-//     let maxValue = 0
-//     let maxKey = 0
-//     for(const [key, value] of arr) {
-//         if(value > maxValue) {
-//             maxValue = value
-//             maxKey = key
-//         }
-//     } 
-//     console.log('maxKey: ', maxKey)
-//     return maxKey
-// }
+const find = (dict, k) => {
+    let maxValue = 0
+    let maxKey = 0
+    let count = 1
+    let result = []
+    while(count <= k) {
+      for(const [key, value] of dict) {
+        if(value > maxValue) {
+            maxValue = value
+            maxKey = key
+        }
+      }
+      result.push(maxKey)
+      const { maxKey, ...rest } = dict
+      maxKey = 0
+      maxValue = 0
+      count++
+    }
+    return result
+}
 
-// console.log(mostFrequent([1, 2, 3, 4, 4, 4, 5, 5], 2))
+console.log(mostFrequent([1, 2, 3, 4, 4, 4, 5, 5], 2))
 
