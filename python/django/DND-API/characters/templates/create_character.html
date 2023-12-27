@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Character</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">D&D Character Creator</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <!-- Page Title -->
+        <h1>Create Character</h1>
+
+        <!-- Character Creation Instruction -->
+        <p>Enter information and stats for your character below:</p>
+
+        <!-- Character Info Form -->
+        <section>
+            <form id="CharacterInfo" action="/created" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Character Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="charClass">Class:</label>
+                    <input type="text" class="form-control" id="charClass" name="char_class" placeholder="Character Class">
+                </div>
+
+                <div class="form-group">
+                    <label for="level">Level:</label>
+                    <input type="number" class="form-control" id="level" name="level" placeholder="Level">
+                </div>
+
+                <div class="form-group">
+                    <label for="exp">EXP:</label>
+                    <input type="number" class="form-control" id="exp" name="exp" placeholder="Experience Points">
+                </div>
+
+                <!-- Base Stats -->
+                <fieldset class="form-group">
+                    <legend>Base Stats</legend>
+                    <div class="row">
+                        <div class="col"><input type="number" class="form-control" name="str_stat" placeholder="STR"></div>
+                        <div class="col"><input type="number" class="form-control" name="dex_stat" placeholder="DEX"></div>
+                        <div class="col"><input type="number" class="form-control" name="con_stat" placeholder="CON"></div>
+                        <div class="col"><input type="number" class="form-control" name="int_stat" placeholder="INT"></div>
+                        <div class="col"><input type="number" class="form-control" name="wis_stat" placeholder="WIS"></div>
+                        <div class="col"><input type="number" class="form-control" name="cha_stat" placeholder="CHA"></div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="background">Character Background:</label>
+                    <textarea class="form-control" id="background" name="background" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Character</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
