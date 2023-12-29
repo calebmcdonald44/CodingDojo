@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    <div class="money">
+        <p>Your Gold: </p>
+        <p>{{request.session.gold}}</p>
+    </div>
+    <div class="row">
+        <form class="locations" action="/submit/" method="post">
+            {% csrf_token %}
+            <h1>Farm</h1>
+            <input type="hidden" name="field" value="farm">
+            <p>(earns 10-12 gold)</p>
+            <button>Find Gold!</button>
+        </form>
+        <form class="locations" action="/submit/" method="post">
+            {% csrf_token %}
+            <h1>Cave</h1>
+            <input type="hidden" name="field" value="cave">
+            <p>(earns 5-10 gold)</p>
+            <button>Find Gold!</button>
+        </form>
+        <form class="locations" action="/submit/" method="post">
+            {% csrf_token %}
+            <h1>House</h1>
+            <input type="hidden" name="field" value="house">
+            <p>(earns 2-5 gold)</p>
+            <button>Find Gold!</button>
+        </form>
+        <form class="locations" action="/submit/" method="post">
+            {% csrf_token %}
+            <h1>Casino</h1>
+            <input type="hidden" name="field" value="casino">
+            <p>(earns/takes 0-50 gold)</p>
+            <button>Find Gold!</button>
+        </form>
+    </div>
+    <div class="log">
+        <p>Activities: </p>
+        <div class="activities">
+            {% for line in request.session.log %}
+                <p>{{ line }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <form class="reset" action="/reset/">
+        <button>reset</button>
+    </form>
+</body>
+</html>

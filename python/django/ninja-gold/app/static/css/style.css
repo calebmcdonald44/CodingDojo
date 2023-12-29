@@ -1,0 +1,44 @@
+body {
+    background-color: rgb(50, 50, 50);
+}
+h1, h2, h3, p {
+    color: white;
+}
+.money {
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
+}
+.row {
+    display: flex;
+    justify-content: space-around;
+}
+.locations {
+    border: white solid 2px;
+    height: 170px;
+    width: 170px;
+    max-height: 170px;
+    max-width: 170px;
+    text-align: center;
+}
+.log {
+    text-align: center;
+}
+.activities {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    width: 450px;
+    height: 175px;
+    max-height: 175px;
+    gap: 5px;
+    margin: 10px auto;
+    border: 2px solid white;
+}
+.activities > * {
+    margin: 0;
+}
+.reset {
+    display: flex;
+    justify-content: center;
+}
