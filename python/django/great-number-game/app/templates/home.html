@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <h3>I am thinking of a number between 1 and 100.</h3>
+    <h3>Take a guess!</h3>
+    {% if request.session.guess %}
+        {% if request.session.guess == request.session.number %}
+            <div class="border">
+                <div class="green box">
+                    <h2>{{request.session.number}} was the correct number!</h2>
+                    <form action="/reset/">
+                        <button>Play Again</button>
+                    </form>
+                </div>
+            </div>
+        {% elif request.session.guess > request.session.number %}
+            <div class="border">
+                <div class="red box">
+                    <h2 class="text">Too High!</h2>
+                </div>
+            </div>
+        {% else %}
+            <div class="border">
+                <div class="red box">
+                    <h2 class="text">Too Low!</h2>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+    <form class="submit" action="/guess/" method="post">
+        {% csrf_token %}
+        <input name="guess" type="number">
+        <button>Guess</button>
+    </form>
+</body>
+</html>
