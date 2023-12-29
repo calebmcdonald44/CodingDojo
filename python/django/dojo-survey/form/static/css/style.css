@@ -9,3 +9,28 @@ p, h1, h2, h3, label {
 body {
     background-color: rgb(40, 40, 40);
 }
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    margin: 50px auto;
+    border: 2px solid white;
+    width: 400px;
+}
+.duo {
+    display: flex;
+    justify-content: space-between;
+}
+.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+textarea {
+    width: 100%;
+}
+button {
+    width: 100px;
+    margin: 0 auto;
+}
