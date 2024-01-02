@@ -24,6 +24,7 @@ Create .gitignore with .env and venv in it
 START A DJANGO APP
 python manage.py startapp <appname>
 Add app name to settings.py "installed_apps"
+create urls.py file in app (with proper imports)
 
 MIGRATE (must do anytime changes are made to models.py)
 python manage.py makemigrations
