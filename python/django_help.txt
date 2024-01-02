@@ -1,0 +1,32 @@
+(Do this in VSCode terminal)
+SET UP AND ACTIVATE VIRTUAL ENVIRONMENT
+python3 -m venv venv
+
+INSTALL DJANGO
+pip install django
+pip install python-dotenv
+
+SET UP A DJANGO PROJECT ON THE SAME LEVEL
+django-admin startproject <projectname> .
+
+UPDATE IMPORTS
+Add to settings.py-
+- import os
+- from dotenv import load_dotenv
+- load_dotenv
+
+HIDE SECRET KEY
+Create .env on top level
+Define SECRET_KEY in .env (no spaces or quotations)
+SECRET_KEY = str(os.getnev('SECRET_KEY')) in settings.py
+Create .gitignore with .env and venv in it
+
+START A DJANGO APP
+python manage.py startapp <appname>
+Add app name to settings.py "installed_apps"
+
+MIGRATE (must do anytime changes are made to models.py)
+python manage.py makemigrations
+
+RUN SERVER
+python manage.py runserver
