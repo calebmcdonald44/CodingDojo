@@ -1,0 +1,25 @@
+CREATE 3 USERS
+Users.objects.create(first_name="Caleb", last_name="McDonald", email_address="fakeemail@something.com", age=25)
+Users.objects.create(first_name="Tuesday", last_name="Tuesday", email_address="stuesday@nba.com", age=35)
+Users.objects.create(first_name="Keylon", last_name="Poole", email_address="kpoole@mlb.com", age=41)
+
+RETRIEVE ALL THE USERS
+Users.objects.all()
+
+RETRIEVE THE LAST USER
+Users.objects.last()
+
+RETRIEVE THE FIRST USER
+Users.objects.first()
+
+CHANGE THE USER WITH THE ID OF 3 SO THEIR LAST NAME IS "Pancakes"
+user_to_update = Users.objects.get(id=3)
+user_to_update.last_name = "Pancakes"
+user_to_update.save()
+
+DELETE THE USER WITHTHE ID OF 2 FROM THE DATABASE
+user_to_delete=Users.objects.get(id=2)
+user_to_delete.delete()
+
+GET ALL THE USERS SORTED BY THEIR FIRST NAME
+Users.objects.all().order_by('first_name')
