@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(47, 47, 47);
+}
+p, h1, h2, h3, label, li {
+    color: white;
+}
+
+/* GENERAL STYLE TAGS */
+.flex {
+    display: flex;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
