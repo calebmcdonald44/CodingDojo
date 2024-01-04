@@ -1,0 +1,6 @@
+body {
+    background-color: rgb(45, 45, 45);
+}
+p, h1, h2, h3, label, li, td, th {
+    color: white;
+}
