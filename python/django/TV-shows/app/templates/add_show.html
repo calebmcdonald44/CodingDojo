@@ -12,6 +12,13 @@
     <a href="/shows/all/">View All Shows</a>
     <form action="/shows/create/" method="post">
         {% csrf_token %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> 
+                {% endfor %}
+            </ul>
+        {% endif %}
         <div class="duo">
             <label for="title">Title</label>
             <input name="title" type="text">
