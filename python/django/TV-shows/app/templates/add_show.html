@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Shows</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Add a New Show</h1>
+    <a href="/shows/all/">View All Shows</a>
+    <form action="/shows/create/" method="post">
+        {% csrf_token %}
+        <div class="duo">
+            <label for="title">Title</label>
+            <input name="title" type="text">
+        </div>
+        <div class="duo">
+            <label for="network">Network</label>
+            <input name="network" type="text">
+        </div>
+        <div class="duo">
+            <label for="release">Release Date</label>
+            <input name="release" type="date">
+        </div>
+        <label for="desc">Description</label>
+        <textarea name="desc" id="" cols="30" rows="10"></textarea>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

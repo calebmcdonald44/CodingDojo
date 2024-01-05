@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Shows</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    <h1>Edit "{{show.title}}"</h1>
+    <a href="/shows/all/">View All Shows</a>
+    <form action="/shows/update/{{show.id}}/" method="post">
+        {% csrf_token %}
+        <div class="duo">
+            <label for="title">Title</label>
+            <input value="{{show.title}}" name="title" type="text">
+        </div>
+        <div class="duo">
+            <label for="network">Network</label>
+            <input value="{{show.network}}" name="network" type="text">
+        </div>
+        <div class="duo">
+            <label for="release">Release Date</label>
+            <input value="{{release}}" name="release" type="date">
+        </div>
+        <label for="desc">Description</label>
+        <textarea value="{{show.desc}}" name="desc" id="" cols="30" rows="10">{{show.desc}}</textarea>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>
