@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+body {
+	text-align: center;
+}
+form {
+	margin: 0 auto;
+	border: solid black 2px;
+	padding: 10px;
+	width: 40%;
+}
+.duo {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin-bottom: 10px;
+}
+.display-background {
+	background-color: lightblue;
+	border: solid black 2px;
+	padding: 10px;
+	text-align: center;
+	width: 225px;
+	margin: 0 auto;
+}
+button, a {
+	margin: 0 auto;
+}

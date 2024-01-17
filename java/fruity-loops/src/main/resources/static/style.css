@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+body {
+	text-align: center;
+}
+h1 {
+	color: pink;
+	margin: 0 auto;
+}
+.pink {
+	background-color: pink;
+	padding: 20px;
+	width: fit-content;
+	margin: 0 auto;
+}
+table {
+	background-color: white;
+	border-collapse: collapse;
+}
+th {
+	font-weight: 800;
+}
+th, td {
+	width: 100px;
+	border-bottom: pink 2px solid;
+}
