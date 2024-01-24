@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -51,8 +52,13 @@ public class HomeController {
 	public String login(
 			@RequestParam(value="email") String email,
 			@RequestParam(value="password") String password,
-			HttpSession session
+			HttpSession session,
+			RedirectAttributes redirectAttributes
 			) {
+		if(password.length()<5) {
+			redirectAttributes.addFlashAttribute("error", "The password must be at least 5 characters.");
+			return "redirect:/form";
+		}
 		session.setAttribute("email", email);
 		return "redirect:/home";
 	}

@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h1>Login</h1>
+	<p><c:out value="${error}"/></p>
 	<form action="/login" method="POST">
 		<label for="email">Email: </label>
 		<input type="text" name="email"/>
