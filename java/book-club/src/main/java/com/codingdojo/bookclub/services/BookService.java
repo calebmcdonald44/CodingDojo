@@ -1,22 +1,20 @@
-package com.codingdojo.mvc.services;
+package com.codingdojo.bookclub.services;
 
 import java.util.List;
-
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.codingdojo.mvc.models.Book;
-import com.codingdojo.mvc.repositories.BookRepository;
+import com.codingdojo.bookclub.models.Book;
+import com.codingdojo.bookclub.repositories.BookRepository;
 
 @Service
 public class BookService {
-    // adding the book repository as a dependency
-    private final BookRepository bookRepository;
-    
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+	
+	@Autowired
+	private BookRepository bookRepository;
+	
     // returns all the books
     public List<Book> allBooks() {
         return bookRepository.findAll();
@@ -44,5 +42,6 @@ public class BookService {
 			bookRepository.deleteById(id);
 		}
 	}
+	
+	
 }
-

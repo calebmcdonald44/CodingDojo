@@ -21,7 +21,6 @@
 				</c:forEach>
 			</form:select>
 		</div>
-	<!-- 	how to make drop down with form:form, is dojo correct path -->
 		<div>
 			<form:label path="firstName">First Name:</form:label>
 			<form:errors path="firstName"></form:errors>
