@@ -8,6 +8,7 @@ source venv/bin/activate
 INSTALL DJANGO
 pip install django
 pip install python-dotenv
+pip install bcrypt
 
 SET UP A DJANGO PROJECT ON THE SAME LEVEL
 (DON'T FORGET THE PERIOD) django-admin startproject <projectname> .
